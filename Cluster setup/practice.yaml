@@ -1,1 +1,3 @@
-test commit
+// List all the gcloud project
+
+gcloud projects list
