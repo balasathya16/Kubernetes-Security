@@ -1,0 +1,60 @@
+root@cks-master:~# cd /etc/kubernetes/pki/
+root@cks-master:/etc/kubernetes/pki# ll
+total 68
+drwxr-xr-x 3 root root 4096 Nov  2 23:51 ./
+drwxr-xr-x 4 root root 4096 Nov  2 23:51 ../
+-rw-r--r-- 1 root root 1155 Nov  2 23:51 apiserver-etcd-client.crt
+-rw------- 1 root root 1679 Nov  2 23:51 apiserver-etcd-client.key
+-rw-r--r-- 1 root root 1164 Nov  2 23:51 apiserver-kubelet-client.crt
+-rw------- 1 root root 1675 Nov  2 23:51 apiserver-kubelet-client.key
+-rw-r--r-- 1 root root 1285 Nov  2 23:51 apiserver.crt
+-rw------- 1 root root 1675 Nov  2 23:51 apiserver.key
+-rw-r--r-- 1 root root 1107 Nov  2 23:51 ca.crt
+-rw------- 1 root root 1679 Nov  2 23:51 ca.key
+drwxr-xr-x 2 root root 4096 Nov  2 23:51 etcd/
+-rw-r--r-- 1 root root 1123 Nov  2 23:51 front-proxy-ca.crt
+-rw------- 1 root root 1679 Nov  2 23:51 front-proxy-ca.key
+-rw-r--r-- 1 root root 1119 Nov  2 23:51 front-proxy-client.crt
+-rw------- 1 root root 1675 Nov  2 23:51 front-proxy-client.key
+-rw------- 1 root root 1679 Nov  2 23:51 sa.key
+-rw------- 1 root root  451 Nov  2 23:51 sa.pub
+
+
+
+----
+
+
+root@cks-master:/etc/kubernetes/pki# vi /etc/kubernetes/scheduler.conf
+root@cks-master:/etc/kubernetes/pki# vi /etc/kubernetes/controller-manager.conf
+root@cks-master:/etc/kubernetes/pki# vi /etc/kubernetes/kubelet.conf
+
+
+---
+
+
+
+root@cks-master:/etc/kubernetes/pki# cd /var/lib/kubelet/
+root@cks-master:/var/lib/kubelet# ll
+total 48
+drwx------  8 root root 4096 Nov  2 23:51 ./
+drwxr-xr-x 47 root root 4096 Nov  2 23:52 ../
+-rw-r--r--  1 root root 1044 Nov  2 23:51 config.yaml
+-rw-------  1 root root   62 Nov  2 23:51 cpu_manager_state
+drwxr-xr-x  2 root root 4096 Nov  4 20:15 device-plugins/
+-rw-r--r--  1 root root  149 Nov  2 23:51 kubeadm-flags.env
+-rw-------  1 root root   61 Nov  2 23:51 memory_manager_state
+drwxr-xr-x  2 root root 4096 Nov  2 23:51 pki/
+drwxr-x---  2 root root 4096 Nov  2 23:51 plugins/
+drwxr-x---  2 root root 4096 Nov  2 23:51 plugins_registry/
+drwxr-x---  2 root root 4096 Nov  4 20:15 pod-resources/
+drwxr-x--- 11 root root 4096 Nov  2 23:52 pods/
+root@cks-master:/var/lib/kubelet# cd pki/
+root@cks-master:/var/lib/kubelet/pki# ll
+total 20
+drwxr-xr-x 2 root root 4096 Nov  2 23:51 ./
+drwx------ 8 root root 4096 Nov  2 23:51 ../
+-rw------- 1 root root 2830 Nov  2 23:51 kubelet-client-2023-11-02-23-51-49.pem
+lrwxrwxrwx 1 root root   59 Nov  2 23:51 kubelet-client-current.pem -> /var/lib/kubelet/pki/kubelet-client-2023-11-02-23-51-49.pem
+-rw-r--r-- 1 root root 2283 Nov  2 23:51 kubelet.crt
+-rw------- 1 root root 1675 Nov  2 23:51 kubelet.key
+root@cks-master:/var/lib/kubelet/pki#
