@@ -8,5 +8,6 @@ gcloud config set project foxbooking
 
 // gcloud compute instances list
  
+// ssh to a cloud instance
 
- 
+gcloud compute ssh cks-master
