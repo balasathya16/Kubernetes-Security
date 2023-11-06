@@ -1,0 +1,98 @@
+root@cks-master:~# vi DockerFile
+root@cks-master:~# cat DockerFile
+FROM bash
+CMD ["ping", "killer.sh"]
+root@cks-master:~# docker build -t simple .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future rel                                                                                                             ease.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat                                                                                                              /root/Dockerfile: no such file or directory
+root@cks-master:~# ll
+total 48
+drwx------  5 root root 4096 Nov  6 02:56 ./
+drwxr-xr-x 19 root root 4096 Nov  6 02:54 ../
+-rw-------  1 root root 1867 Nov  4 22:11 .bash_history
+-rw-r--r--  1 root root 3223 Nov  2 23:49 .bashrc
+drwxr-xr-x  3 root root 4096 Nov  2 23:52 .kube/
+-rw-r--r--  1 root root  161 Dec  5  2019 .profile
+drwx------  2 root root 4096 Nov  2 23:45 .ssh/
+-rw-------  1 root root 2728 Nov  6 02:56 .viminfo
+-rw-r--r--  1 root root   61 Nov  2 23:49 .vimrc
+-rw-r--r--  1 root root  165 Nov  2 23:52 .wget-hsts
+-rw-r--r--  1 root root   36 Nov  6 02:56 DockerFile
+drwx------  3 root root 4096 Nov  2 23:45 snap/
+root@cks-master:~# docker build -t simple .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future rel                                                                                                             ease.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat                                                                                                              /root/Dockerfile: no such file or directory
+root@cks-master:~# ^C
+root@cks-master:~# ll
+total 48
+drwx------  5 root root 4096 Nov  6 02:56 ./
+drwxr-xr-x 19 root root 4096 Nov  6 02:54 ../
+-rw-------  1 root root 1867 Nov  4 22:11 .bash_history
+-rw-r--r--  1 root root 3223 Nov  2 23:49 .bashrc
+drwxr-xr-x  3 root root 4096 Nov  2 23:52 .kube/
+-rw-r--r--  1 root root  161 Dec  5  2019 .profile
+drwx------  2 root root 4096 Nov  2 23:45 .ssh/
+-rw-------  1 root root 2728 Nov  6 02:56 .viminfo
+-rw-r--r--  1 root root   61 Nov  2 23:49 .vimrc
+-rw-r--r--  1 root root  165 Nov  2 23:52 .wget-hsts
+-rw-r--r--  1 root root   36 Nov  6 02:56 DockerFile
+drwx------  3 root root 4096 Nov  2 23:45 snap/
+root@cks-master:~# rn DockerFile Dockerfile
+
+Command 'rn' not found, but can be installed with:
+
+apt install trn4
+
+root@cks-master:~# mv DockerFile Dockerfile
+root@cks-master:~# docker build -t simple .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future rel                                                                                                             ease.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  4.219MB
+Step 1/2 : FROM bash
+latest: Pulling from library/bash
+96526aa774ef: Pull complete
+00a21340f794: Pull complete
+05074b9ee5fc: Pull complete
+Digest: sha256:acbac47fb9ea642a211c35013f50481bec20bd23db852c9c2634a4d153e631f1
+Status: Downloaded newer image for bash:latest
+ ---> 643ed33becef
+Step 2/2 : CMD ["ping", "killer.sh"]
+ ---> Running in a407cbd18fe5
+Removing intermediate container a407cbd18fe5
+ ---> bd0265bb5f70
+Successfully built bd0265bb5f70
+Successfully tagged simple:latest
+root@cks-master:~# docker image ls | simple
+
+Command 'simple' not found, did you mean:
+
+  command 'sample' from deb barcode (0.99-3)
+
+Try: apt install <deb name>
+
+root@cks-master:~# docker image ls | grep simple
+simple       latest    bd0265bb5f70   41 seconds ago   14.5MB
+root@cks-master:~# docker run simple
+PING killer.sh (34.36.233.68): 56 data bytes
+64 bytes from 34.36.233.68: seq=0 ttl=114 time=0.790 ms
+64 bytes from 34.36.233.68: seq=1 ttl=114 time=0.525 ms
+64 bytes from 34.36.233.68: seq=2 ttl=114 time=0.427 ms
+64 bytes from 34.36.233.68: seq=3 ttl=114 time=0.519 ms
+64 bytes from 34.36.233.68: seq=4 ttl=114 time=0.469 ms
+64 bytes from 34.36.233.68: seq=5 ttl=114 time=0.559 ms
+64 bytes from 34.36.233.68: seq=6 ttl=114 time=0.466 ms
+64 bytes from 34.36.233.68: seq=7 ttl=114 time=0.519 ms
+64 bytes from 34.36.233.68: seq=8 ttl=114 time=0.492 ms
+64 bytes from 34.36.233.68: seq=9 ttl=114 time=0.425 ms
+^C
+--- killer.sh ping statistics ---
+10 packets transmitted, 10 packets received, 0% packet loss
+round-trip min/avg/max = 0.425/0.519/0.790 ms
