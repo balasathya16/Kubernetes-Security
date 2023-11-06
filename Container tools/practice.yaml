@@ -96,3 +96,61 @@ PING killer.sh (34.36.233.68): 56 data bytes
 --- killer.sh ping statistics ---
 10 packets transmitted, 10 packets received, 0% packet loss
 round-trip min/avg/max = 0.425/0.519/0.790 ms
+
+
+---
+
+
+root@cks-master:~# cat /etc/crictl.yaml
+runtime-endpoint: unix:///run/containerd/containerd.sock
+root@cks-master:~# docker run --name c1 -d ubuntu sh -c 'sleep 1d'
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+aece8493d397: Pull complete
+Digest: sha256:2b7412e6465c3c7fc5bb21d3e6f1917c167358449fecac8176c6e496e5c1f05f
+Status: Downloaded newer image for ubuntu:latest
+07db5cc749f318eaeb736bc23e66e565a15c4fea23d0f388cd9ebfed3c15d582
+root@cks-master:~# docker exec c1 ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.0   2888   964 ?        Ss   03:08   0:00 sh -c sleep 1d
+root           8  0.0  0.0   2788   992 ?        S    03:08   0:00 sleep 1d
+root           9  0.0  0.0   7060  1588 ?        Rs   03:08   0:00 ps aux
+root@cks-master:~# docker run --name c2 -d ubuntu sh -c 'sleep 1d'
+c043cb7722990f24ed4a7e6bd1356004205f076911c71618e0476c83602b3016
+root@cks-master:~# docker exec c2 ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.1  0.0   2888   956 ?        Ss   03:08   0:00 sh -c sleep 1d
+root           8  0.0  0.0   2788  1000 ?        S    03:08   0:00 sleep 1d
+root           9  0.0  0.0   7060  1592 ?        Rs   03:09   0:00 ps aux
+root@cks-master:~# ps aux | grep sleep
+root        9611  0.0  0.0   2888   964 ?        Ss   03:08   0:00 sh -c sleep 1d
+root        9636  0.0  0.0   2788   992 ?        S    03:08   0:00 sleep 1d
+root       10094  0.0  0.0   2888   956 ?        Ss   03:08   0:00 sh -c sleep 1d
+root       10120  0.0  0.0   2788  1000 ?        S    03:08   0:00 sleep 1d
+root       10617  0.0  0.0   8168   720 pts/0    S+   03:09   0:00 grep --color=auto sleep
+root@cks-master:~# docker rm c2 --force
+c2
+root@cks-master:~# docker run --name c2 --pid=container:c1 -d ubuntu sh -c 'sleep 99d'
+a66be181028fabfc4c5baa6b73e390fd30437330f94d5a220d2c8efdb669d3ca
+root@cks-master:~# docker exec c2 ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   2888   964 ?        Ss   03:08   0:00 sh -c sleep 1d
+root           8  0.0  0.0   2788   992 ?        S    03:08   0:00 sleep 1d
+root          15  0.2  0.0   2888   956 ?        Ss   03:12   0:00 sh -c sleep 99d
+root          21  0.0  0.0   2788  1008 ?        S    03:12   0:00 sleep 99d
+root          22  0.0  0.0   7060  1580 ?        Rs   03:12   0:00 ps aux
+root@cks-master:~# docker exec c2 ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   2888   964 ?        Ss   03:08   0:00 sh -c sleep 1d
+root           8  0.0  0.0   2788   992 ?        S    03:08   0:00 sleep 1d
+root          15  0.0  0.0   2888   956 ?        Ss   03:12   0:00 sh -c sleep 99d
+root          21  0.0  0.0   2788  1008 ?        S    03:12   0:00 sleep 99d
+root          28  0.0  0.0   7060  1580 ?        Rs   03:19   0:00 ps aux
+root@cks-master:~# docker exec c1 ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   2888   964 ?        Ss   03:08   0:00 sh -c sleep 1d
+root           8  0.0  0.0   2788   992 ?        S    03:08   0:00 sleep 1d
+root          15  0.0  0.0   2888   956 ?        Ss   03:12   0:00 sh -c sleep 99d
+root          21  0.0  0.0   2788  1008 ?        S    03:12   0:00 sleep 99d
+root          34  0.0  0.0   7060  1664 ?        Rs   03:19   0:00 ps aux
+root@cks-master:~#
