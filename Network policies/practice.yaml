@@ -1,0 +1,24 @@
+root@cks-master:~# k get node
+NAME         STATUS   ROLES           AGE    VERSION
+cks-master   Ready    control-plane   4d1h   v1.28.2
+cks-worker   Ready    <none>          4d1h   v1.28.2
+root@cks-master:~# k run frontend --image=nginx
+pod/frontend created
+root@cks-master:~# k run backend --image=nginx
+pod/backend created
+root@cks-master:~# k expose pod frontend --port 80
+service/frontend exposed
+root@cks-master:~# k expose pod backend --port 80
+service/backend exposed
+root@cks-master:~# k get pod, svc
+error: arguments in resource/name form must have a single resource and name
+root@cks-master:~# k get pod,svc
+NAME           READY   STATUS    RESTARTS   AGE
+pod/backend    1/1     Running   0          65s
+pod/frontend   1/1     Running   0          82s
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/backend      ClusterIP   10.110.45.185   <none>        80/TCP    20s
+service/frontend     ClusterIP   10.111.159.19   <none>        80/TCP    38s
+service/kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   4d1h
+root@cks-master:~#
