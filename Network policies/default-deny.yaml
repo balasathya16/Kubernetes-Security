@@ -1,13 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: default-deny
+  name: backend
   namespace: default
 spec:
-  podSelector: {}
+  podSelector:
+    matchLabels:
+      role: frontend
   policyTypes:
     - Ingress
-    - Egress
-~
-~
+  Ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            role: frontend
+
 ~
