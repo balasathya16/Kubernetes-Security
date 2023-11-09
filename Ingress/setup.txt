@@ -1,0 +1,217 @@
+root@cks-master:~# k -n ingress-nginx get pod, svc
+error: arguments in resource/name form must have a single resource and name
+root@cks-master:~# k -n ingress-nginx get pod, svc
+error: arguments in resource/name form must have a single resource and name
+root@cks-master:~# k -n ingress-nginx get pod
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-lw82h        0/1     Completed   0          2m32s
+ingress-nginx-admission-patch-49smd         0/1     Completed   1          2m32s
+ingress-nginx-controller-6457bbc556-ppstc   1/1     Running     0          2m32s
+root@cks-master:~# k -n ingress-nginx get pod,svc
+NAME                                            READY   STATUS      RESTARTS   AGE
+pod/ingress-nginx-admission-create-lw82h        0/1     Completed   0          2m46s
+pod/ingress-nginx-admission-patch-49smd         0/1     Completed   1          2m46s
+pod/ingress-nginx-controller-6457bbc556-ppstc   1/1     Running     0          2m46s
+
+NAME                                         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)
+service/ingress-nginx-controller             NodePort    10.96.82.168   <none>        80:31645/TCP,443:32165/TCP
+service/ingress-nginx-controller-admission   ClusterIP   10.98.70.20    <none>        443/TCP
+root@cks-master:~# vi ingress.yaml
+root@cks-master:~# vi ingress.yaml
+root@cks-master:~# k -f ingress.yaml create
+ingress.networking.k8s.io/secure-ingress created
+root@cks-master:~# k get ing
+NAME             CLASS   HOSTS   ADDRESS   PORTS   AGE
+secure-ingress   nginx   *                 80      13s
+root@cks-master:~# cat ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: secure-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /service1
+        pathType: Prefix
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+      - path: /service2
+        pathType: Prefix
+        backend:
+          service:
+            name: service2
+            port:
+              number: 80
+
+root@cks-master:~# root@cks-master:~# cat ingress.yaml
+      paths:
+      - path: /service1
+        pathType: Prefix
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+      - path: /service2
+        pathType: Prefix
+        backend:
+          service:
+            name: service2
+            port:
+              number: 80
+root@cks-master:~#: command not found
+root@cks-master:~# apiVersion: networking.k8s.io/v1
+apiVersion:: command not found
+root@cks-master:~# kind: Ingress
+kind:: command not found
+root@cks-master:~# metadata:
+metadata:: command not found
+root@cks-master:~#   name: secure-ingress
+
+Command 'name:' not found, did you mean:
+
+  command 'namei' from deb util-linux (2.34-0.1ubuntu9.4)
+  command 'named' from deb bind9 (1:9.16.1-0ubuntu2.16)
+
+Try: apt install <deb name>
+
+root@cks-master:~#   annotations:
+
+Command 'annotations:' not found, did you mean:
+
+  command 'annotations' from snap annotations (0.1)
+
+See 'snap info <snapname>' for additional versions.
+
+root@cks-master:~#     nginx.ingress.kubernetes.io/rewrite-target: /
+-bash: nginx.ingress.kubernetes.io/rewrite-target:: No such file or directory
+root@cks-master:~# spec:
+spec:: command not found
+root@cks-master:~#   ingressClassName: nginx
+ingressClassName:: command not found
+root@cks-master:~#   rules:
+rules:: command not found
+root@cks-master:~#   - http:
+-: command not found
+root@cks-master:~#       paths:
+paths:: command not found
+root@cks-master:~#       - path: /service1
+-: command not found
+root@cks-master:~#         pathType: Prefix
+pathType:: command not found
+root@cks-master:~#         backend:
+backend:: command not found
+root@cks-master:~#           service:
+
+Command 'service:' not found, did you mean:
+
+  command 'service' from deb init-system-helpers (1.57)
+
+Try: apt install <deb name>
+
+root@cks-master:~#             name: service1
+
+Command 'name:' not found, did you mean:
+
+  command 'namei' from deb util-linux (2.34-0.1ubuntu9.4)
+  command 'named' from deb bind9 (1:9.16.1-0ubuntu2.16)
+
+Try: apt install <deb name>
+
+root@cks-master:~#             port:
+
+Command 'port:' not found, did you mean:
+
+  command 'port' from snap port (1.10.0)
+  command 'portx' from snap portx (2.2.5)
+
+See 'snap info <snapname>' for additional versions.
+
+root@cks-master:~#               number: 80
+
+Command 'number:' not found, did you mean:
+
+  command 'numbers' from snap numbers (0+git.04c78e2)
+  command 'number' from deb bsdgames (2.17-28build1)
+
+See 'snap info <snapname>' for additional versions.
+
+root@cks-master:~#       - path: /service2
+-: command not found
+root@cks-master:~#         pathType: Prefix
+pathType:: command not found
+root@cks-master:~#         backend:
+backend:: command not found
+root@cks-master:~#           service:
+
+Command 'service:' not found, did you mean:
+
+  command 'service' from deb init-system-helpers (1.57)
+
+Try: apt install <deb name>
+
+root@cks-master:~#             name: service2
+
+Command 'name:' not found, did you mean:
+
+  command 'namei' from deb util-linux (2.34-0.1ubuntu9.4)
+  command 'named' from deb bind9 (1:9.16.1-0ubuntu2.16)
+
+Try: apt install <deb name>
+
+root@cks-master:~#             port:
+
+Command 'port:' not found, did you mean:
+
+  command 'port' from snap port (1.10.0)
+  command 'portx' from snap portx (2.2.5)
+
+See 'snap info <snapname>' for additional versions.
+
+root@cks-master:~#               number: 80
+
+Command 'number:' not found, did you mean:
+
+  command 'numbers' from snap numbers (0+git.04c78e2)
+  command 'number' from deb bsdgames (2.17-28build1)
+
+See 'snap info <snapname>' for additional versions.
+
+root@cks-master:~# ll
+total 80
+drwx------  5 root root  4096 Nov  8 22:55 ./
+drwxr-xr-x 19 root root  4096 Nov  8 22:16 ../
+-rw-------  1 root root  5293 Nov  8 05:26 .bash_history
+-rw-r--r--  1 root root  3223 Nov  2 23:49 .bashrc
+drwxr-xr-x  3 root root  4096 Nov  2 23:52 .kube/
+-rw-r--r--  1 root root   161 Dec  5  2019 .profile
+drwx------  2 root root  4096 Nov  2 23:45 .ssh/
+-rw-------  1 root root 13713 Nov  8 22:55 .viminfo
+-rw-r--r--  1 root root    61 Nov  2 23:49 .vimrc
+-rw-r--r--  1 root root   165 Nov  2 23:52 .wget-hsts
+-rw-r--r--  1 root root    36 Nov  6 02:56 Dockerfile
+-rw-r--r--  1 root root   383 Nov  7 02:32 backend.yaml
+-rw-r--r--  1 root root   171 Nov  7 01:28 deny-default.yaml
+-rw-r--r--  1 root root   287 Nov  7 02:07 egress.yaml
+-rw-r--r--  1 root root   520 Nov  8 22:55 ingress.yaml
+drwx------  3 root root  4096 Nov  2 23:45 snap/
+root@cks-master:~# k run pod1 --image nginx
+pod/pod1 created
+root@cks-master:~# k run pod2 --image httpd
+pod/pod2 created
+root@cks-master:~# k expose pod1 --port 80 --name service1
+error: the server doesn't have a resource type "pod1"
+root@cks-master:~# k expose pod pod1 --port 80 --name service1
+service/service1 exposed
+root@cks-master:~# k expose pod pod2 --port 80 --name service1
+Error from server (AlreadyExists): services "service1" already exists
+root@cks-master:~# k expose pod pod2 --port 80 --name service2
+service/service2 exposed
+root@cks-master:~#
