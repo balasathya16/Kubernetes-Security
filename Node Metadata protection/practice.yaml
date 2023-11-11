@@ -1,0 +1,34 @@
+
+root@cks-master:~# vi allow.yaml
+root@cks-master:~# k create -f allow.yaml
+networkpolicy.networking.k8s.io/cloud-metadata-allow created
+root@cks-master:~# k get pod
+nginx  pod1   pod2
+root@cks-master:~# k get pod
+nginx  pod1   pod2
+root@cks-master:~# k get pod --show-labels
+NAME    READY   STATUS    RESTARTS       AGE     LABELS
+nginx   1/1     Running   0              38m     run=nginx
+pod1    1/1     Running   2 (135m ago)   2d16h   run=pod1
+pod2    1/1     Running   2 (135m ago)   2d16h   run=pod2
+root@cks-master:~# k label pod nginx pod
+pod1  pod2
+root@cks-master:~# k label pod nginx pod
+pod1  pod2
+root@cks-master:~# k label pod nginx pod
+pod1  pod2
+root@cks-master:~# k label pod nginx role=metadata-accessor
+pod/nginx labeled
+root@cks-master:~# k get pod --show-labels
+NAME    READY   STATUS    RESTARTS       AGE     LABELS
+nginx   1/1     Running   0              46m     role=metadata-accessor,run=nginx
+pod1    1/1     Running   2 (142m ago)   2d16h   run=pod1
+pod2    1/1     Running   2 (142m ago)   2d16h   run=pod2
+root@cks-master:~# k exec nginx -it -- bash
+root@nginx:/# curl 169.254.169.254
+computeMetadata/
+root@nginx:/#
+
+
+---
+
