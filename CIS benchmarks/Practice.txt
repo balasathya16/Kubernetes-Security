@@ -1,0 +1,40 @@
+
+root@cks-master:~# stat -c %a /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+644
+root@cks-master:~# chmod 600 /etc/systemd/system/kubelet.service.d/kubeadm.conf
+chmod: cannot access '/etc/systemd/system/kubelet.service.d/kubeadm.conf': No such file or directory
+root@cks-master:~# export kubelet_service_config=/etc/systemd/system/kubelet.service.d/kubeadm.conf
+root@cks-master:~# chmod 600 /etc/systemd/system/kubelet.service.d/kubeadm.conf
+chmod: cannot access '/etc/systemd/system/kubelet.service.d/kubeadm.conf': No such file or directory
+root@cks-master:~# cd /etc/systemd/
+root@cks-master:/etc/systemd# ls
+journald.conf  logind.conf  network  networkd.conf  pstore.conf  resolved.conf  sleep.conf  system  system.conf  user  user.conf
+root@cks-master:/etc/systemd# systemctl service kubelet
+Unknown operation service.
+root@cks-master:/etc/systemd# systemctl status kubelet
+● kubelet.service - kubelet: The Kubernetes Node Agent
+     Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor preset: enabled)
+    Drop-In: /etc/systemd/system/kubelet.service.d
+             └─10-kubeadm.conf
+     Active: active (running) since Tue 2023-11-14 00:47:21 UTC; 12min ago
+       Docs: https://kubernetes.io/docs/home/
+   Main PID: 1245 (kubelet)
+      Tasks: 13 (limit: 4680)
+     Memory: 48.9M
+     CGroup: /system.slice/kubelet.service
+             └─1245 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --contain>
+
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.414712    1245 pod_workers.go:1300] "Error syncing pod, skipping" err="failed to \"KillPodSandbox\" for \"6c301aca-9c97-45fe-be15-8>
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.427352    1245 remote_runtime.go:222] "StopPodSandbox from runtime service failed" err="rpc error: code = Unknown desc = failed to >
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.427436    1245 kuberuntime_manager.go:1375] "Failed to stop sandbox" podSandboxID={"Type":"containerd","ID":"da19b79df9d2ef19b0d6ca>
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.429131    1245 remote_runtime.go:222] "StopPodSandbox from runtime service failed" err="rpc error: code = NotFound desc = an error >
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.429256    1245 kuberuntime_manager.go:1075] "killPodWithSyncResult failed" err="failed to \"KillPodSandbox\" for \"ba6ac062-e5de-4e>
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.429338    1245 pod_workers.go:1300] "Error syncing pod, skipping" err="failed to \"KillPodSandbox\" for \"ba6ac062-e5de-4e9f-962a-7>
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.441778    1245 remote_runtime.go:222] "StopPodSandbox from runtime service failed" err="rpc error: code = Unknown desc = failed to >
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.441854    1245 kuberuntime_manager.go:1375] "Failed to stop sandbox" podSandboxID={"Type":"containerd","ID":"8bdbae4b42b171425e1655>
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.530783    1245 kuberuntime_manager.go:1075] "killPodWithSyncResult failed" err="failed to \"KillPodSandbox\" for \"5c4f573f-c434-48>
+Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.530885    1245 pod_workers.go:1300] "Error syncing pod, skipping" err="failed to \"KillPodSandbox\" for \"5c4f573f-c434-48d6-bd8d-e>
+
+root@cks-master:/etc/systemd# chmod 600 /etc/systemd/
+journald.conf  logind.conf    network/       networkd.conf  pstore.conf    resolved.conf  sleep.conf     system/        system.conf    user/          user.conf
+root@cks-master:/etc/systemd# chmod 600 /etc/systemd/system
