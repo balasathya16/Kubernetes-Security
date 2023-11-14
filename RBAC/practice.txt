@@ -1,0 +1,37 @@
+root@cks-master:~# k auth can-i -n red get secrets --as jane
+yes
+root@cks-master:~# k auth can-i -n red put secrets --as jane
+Warning: verb 'put' is not a known verb
+
+no
+root@cks-master:~# k auth can-i -n red list secrets --as jane
+no
+root@cks-master:~# k auth can-i -n red update secrets --as jane
+no
+root@cks-master:~# k auth can-i -n red write secrets --as jane
+Warning: verb 'write' is not a known verb
+
+no
+root@cks-master:~# k auth can-i -n red set secrets --as jane
+Warning: verb 'set' is not a known verb
+
+no
+root@cks-master:~# k auth can-i -n blue list secrets --as jane
+yes
+root@cks-master:~# k auth can-i -n blue read secrets --as jane
+Warning: verb 'read' is not a known verb
+
+no
+root@cks-master:~# k auth can-i -n blue get secrets --as jane
+yes
+root@cks-master:~# k auth can-i -n blue put secrets --as jane
+Warning: verb 'put' is not a known verb
+
+no
+root@cks-master:~# k auth can-i -n blue delete secrets --as jane
+no
+root@cks-master:~# k auth can-i -n blue get secrets --as jane
+yes
+root@cks-master:~# k auth can-i -n blue get secrets --as pp
+no
+root@cks-master:~#
