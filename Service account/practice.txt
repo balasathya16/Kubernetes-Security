@@ -1,0 +1,52 @@
+root@cks-master:~# ls
+allow.yaml  csr.yaml   jane.csr  kubernetes                            snap
+cert.pem    deny.yaml  jane.key  kubernetes-server-linux-amd64.tar.gz
+compare     jane.crt   key.pem   pod.yaml
+root@cks-master:~# vi pod.yaml
+root@cks-master:~# k create -f pod.yaml
+Error from server (AlreadyExists): error when creating "pod.yaml": pods "accessor" already exists
+root@cks-master:~# k apply -f pod.yaml
+Warning: resource pods/accessor is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+The Pod "accessor" is invalid: spec: Forbidden: pod updates may not change fields other than `spec.containers[*].image`,`spec.initContainers[*].image`,`spec.activeDeadlineSeconds`,`spec.tolerations` (only additions to existing tolerations),`spec.terminationGracePeriodSeconds` (allow it to be set to 1 if it was previously negative)
+  core.PodSpec{
+        ... // 8 identical fields
+        NodeSelector:                 nil,
+        ServiceAccountName:           "accessor",
+-       AutomountServiceAccountToken: nil,
++       AutomountServiceAccountToken: &false,
+        NodeName:                     "cks-worker",
+        SecurityContext:              &{},
+        ... // 20 identical fields
+  }
+
+root@cks-master:~# k delete pod pod
+Error from server (NotFound): pods "pod" not found
+root@cks-master:~# k delete pod pod
+pod1  pod2
+root@cks-master:~# k delete pod
+poddisruptionbudgets.policy  podtemplates
+pods
+root@cks-master:~# k delete pod
+poddisruptionbudgets.policy  podtemplates
+pods
+root@cks-master:~# k delete pod
+poddisruptionbudgets.policy  podtemplates
+pods
+
+pods
+root@cks-master:~# k get pod
+NAME       READY   STATUS    RESTARTS       AGE
+accessor   1/1     Running   0              17m
+nginx      1/1     Running   3 (141m ago)   4d5h
+pod1       1/1     Running   5 (141m ago)   6d21h
+pod2       1/1     Running   5 (141m ago)   6d21h
+root@cks-master:~# k delete pod accessor
+pod "accessor" deleted
+root@cks-master:~# k create -f pod.yaml
+pod/accessor created
+root@cks-master:~# k get pod
+NAME       READY   STATUS    RESTARTS       AGE
+accessor   1/1     Running   0              7s
+nginx      1/1     Running   3 (141m ago)   4d5h
+pod1       1/1     Running   5 (141m ago)   6d21h
+pod2       1/1     Running   5 (141m ago)   6d21h
