@@ -1,0 +1,76 @@
+root@cks-master:~# k config set-credentials jane --client-certificate jane.crt --client-key jane.key
+User "jane" set.
+root@cks-master:~# k config vie
+error: unknown command "vie"
+See 'kubectl config -h' for help and examples
+root@cks-master:~# k config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://10.128.0.2:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+preferences: {}
+users:
+- name: jane
+  user:
+    client-certificate: /root/jane.crt
+    client-key: /root/jane.key
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+root@cks-master:~# k config set-credentials jane --client-certificate jane.crt --client-key jane.key --embed-certs
+User "jane" set.
+root@cks-master:~# k config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://10.128.0.2:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+preferences: {}
+users:
+- name: jane
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+root@cks-master:~# k config set-context jane --user=jane --cluster kubernetes
+Context "jane" created.
+root@cks-master:~# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          jane                          kubernetes   jane
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin
+root@cks-master:~# k config use-context jane
+Switched to context "jane".
+root@cks-master:~# k get ns
+Error from server (Forbidden): namespaces is forbidden: User "jane" cannot list resource "namespaces" in API group "" at the cluster scope
+root@cks-master:~# k -n blue get secrets
+No resources found in blue namespace.
+root@cks-master:~# k -n blue get secrets
+No resources found in blue namespace.
+root@cks-master:~# k -n blue get pod
+Error from server (Forbidden): pods is forbidden: User "jane" cannot list resource "pods" in API group "" in the namespace "blue"
+root@cks-master:~# k -n blue get deployments.apps
+Error from server (Forbidden): deployments.apps is forbidden: User "jane" cannot list resource "deployments" in API group "apps" in the namespace "blue"
+root@cks-master:~# k -n blue delete deployments.apps
+error: resource(s) were provided, but no name was specified
+root@cks-master:~#
