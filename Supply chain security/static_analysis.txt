@@ -1,0 +1,38 @@
+
+root@cks-master:~/cks-course-environment# cd course-content/supply-chain-security/static-analysis/
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis# cd conftest/
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest# l
+docker/  kubernetes/
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest# cd kubernetes/
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# l
+deploy.yaml  policy/  run.sh*
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# vi deploy.yaml
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# cd policy/
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes/policy# l
+deployment.rego
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes/policy# vi deployment.rego
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes/policy# cd ..
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# l
+deploy.yaml  policy/  run.sh*
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# ./run.sh
+Unable to find image 'openpolicyagent/conftest:latest' locally
+latest: Pulling from openpolicyagent/conftest
+7264a8db6415: Already exists
+901f18ef4a5a: Pull complete
+154f26524793: Pull complete
+3d05e2f4f536: Pull complete
+eac48b89ec5b: Pull complete
+Digest: sha256:c771e46b7e69d7005a28dc55a875251060de6a12c22086c8ce558690a60b6d9c
+Status: Downloaded newer image for openpolicyagent/conftest:latest
+FAIL - deploy.yaml - main - Containers must not run as root
+
+2 tests, 1 passed, 0 warnings, 1 failure, 0 exceptions
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# vi deploy.yaml
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# ./
+policy/ run.sh
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# ./run.sh
+
+2 tests, 2 passed, 0 warnings, 0 failures, 0 exceptions
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# vi deploy.yaml
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest/kubernetes# cd ..
+root@cks-master:~/cks-course-environment/course-content/supply-chain-security/static-analysis/conftest#
