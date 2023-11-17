@@ -1,0 +1,12 @@
+root@cks-master:~# docker build -t app .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  6.992MB
+Step 1/6 : FROM ubuntu
+ ---> e4c58958181a
+Step 2/6 : ARG DEBIAN_FRONTEND=noninteractive
+ ---> Running in e10bb637135c
+Removing intermediate container e10bb637135c
+
