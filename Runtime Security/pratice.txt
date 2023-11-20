@@ -1,0 +1,31 @@
+root@cks-master:~# strace -cw ls /
+bin   dev  home  lib32  libx32      media  opt   root  sbin  srv  tmp  var
+boot  etc  lib   lib64  lost+found  mnt    proc  run   snap  sys  usr
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 30.36    0.001074        1073         1           execve
+ 18.22    0.000644          16        40           mmap
+ 11.34    0.000401          16        24           openat
+  8.32    0.000294          11        26           close
+  7.29    0.000258          10        25           fstat
+  5.79    0.000205         102         2           write
+  4.14    0.000146          18         8           mprotect
+  3.94    0.000140          15         9           read
+  2.14    0.000076           9         8           pread64
+  1.72    0.000061          30         2           getdents64
+  1.03    0.000036          18         2         2 access
+  0.87    0.000031          15         2         2 statfs
+  0.85    0.000030          10         3           brk
+  0.68    0.000024          23         1           munmap
+  0.65    0.000023          11         2           ioctl
+  0.54    0.000019           9         2         1 arch_prctl
+  0.51    0.000018           9         2           rt_sigaction
+  0.32    0.000011          11         1           stat
+  0.28    0.000010           9         1           futex
+  0.27    0.000009           9         1           prlimit64
+  0.25    0.000009           9         1           rt_sigprocmask
+  0.25    0.000009           8         1           set_tid_address
+  0.25    0.000009           8         1           set_robust_list
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.003537                   165         5 total
+root@cks-master:~#
