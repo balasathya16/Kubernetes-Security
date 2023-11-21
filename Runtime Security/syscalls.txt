@@ -86,3 +86,37 @@ strace: Process 13237 detached
   0.00    0.000077          25         3           getpeername
 ------ ----------- ----------- --------- --------- ----------------
 100.00  418.599686                197611      9063 total
+
+---
+
+root@cks-master:/proc/11735/fd# cat 10 | grep 2233
+Binary file (standard input) matches
+root@cks-master:/proc/11735/fd# cat 10 | strings |  grep 2233
+2233
+root@cks-master:/proc/11735/fd# cat 10 | strings |  grep 2233 -A2 -B@)
+-bash: syntax error near unexpected token `)'
+root@cks-master:/proc/11735/fd# cat 10 | strings |  grep 2233 -A2 -B20
+coordination.k8s.io/v1
+Lease
+kube-scheduler
+kube-system"
+*$7c590e0e-784a-4916-946b-14c7cd091d9d2
+kube-scheduler
+Update
+coordination.k8s.io/v1"
+FieldsV1:|
+z{"f:spec":{"f:acquireTime":{},"f:holderIdentity":{},"f:leaseDurationSeconds":{},"f:leaseTransitions":{},"f:renewTime":{}}}B
+/cks-master_76329a75-3686-4c46-91db-38ab27c4acc5
+$/registry/secrets/default/creditcard
+Secret
+creditcard
+default"
+*$4a8427e4-c97f-4ba2-acce-94871e3d5d8e2
+kubectl-create
+Update
+FieldsV1:+
+){"f:data":{".":{},"f:cc":{}},"f:type":{}}B
+2233
+Opaque
+!/registry/masterleases/10.128.0.5
+root@cks-master:/proc/11735/fd#
