@@ -1,0 +1,36 @@
+root@cks-worker:~# service falco status
+● falco.service - Falco: Container Native Runtime Security
+     Loaded: loaded (/lib/systemd/system/falco.service; disabled; vendor preset: enabled)
+     Active: inactive (dead)
+       Docs: https://falco.org/docs/
+root@cks-worker:~# service falco start
+root@cks-worker:~# service falco status
+● falco.service - Falco: Container Native Runtime Security
+     Loaded: loaded (/lib/systemd/system/falco.service; disabled; vendor preset: enabled)
+     Active: active (running) since Wed 2023-11-22 03:04:38 UTC; 2s ago
+       Docs: https://falco.org/docs/
+    Process: 3626 ExecStartPre=/sbin/modprobe falco (code=exited, status=0/SUCCESS)
+   Main PID: 3630 (falco)
+      Tasks: 16 (limit: 4680)
+     Memory: 31.6M
+     CGroup: /system.slice/falco.service
+             └─3630 /usr/bin/falco --pidfile=/var/run/falco.pid
+
+Nov 22 03:04:39 cks-worker falco[3630]: Falco version 0.32.1
+Nov 22 03:04:39 cks-worker falco[3630]: Wed Nov 22 03:04:39 2023: Falco version 0.32.1
+Nov 22 03:04:39 cks-worker falco[3630]: Wed Nov 22 03:04:39 2023: Falco initialized with configuration file /etc/falco/falco.yaml
+Nov 22 03:04:39 cks-worker falco[3630]: Falco initialized with configuration file /etc/falco/falco.yaml
+Nov 22 03:04:39 cks-worker falco[3630]: Loading rules from file /etc/falco/falco_rules.yaml:
+Nov 22 03:04:39 cks-worker falco[3630]: Wed Nov 22 03:04:39 2023: Loading rules from file /etc/falco/falco_rules.yaml:
+Nov 22 03:04:39 cks-worker falco[3630]: Loading rules from file /etc/falco/falco_rules.local.yaml:
+Nov 22 03:04:39 cks-worker falco[3630]: Wed Nov 22 03:04:39 2023: Loading rules from file /etc/falco/falco_rules.local.yaml:
+Nov 22 03:04:39 cks-worker falco[3630]: Starting internal webserver, listening on port 8765
+Nov 22 03:04:39 cks-worker falco[3630]: Wed Nov 22 03:04:39 2023: Starting internal webserver, listening on port 8765
+root@cks-worker:~# tail -5 /var/log/syslog | grep falco
+Nov 22 03:04:39 cks-worker kernel: [  369.454706] falco: CPU buffer initialized, size=8388608
+Nov 22 03:04:39 cks-worker kernel: [  369.454712] falco: starting capture
+root@cks-worker:~# tail -f /var/log/syslog | grep falco
+Nov 22 03:05:48 cks-worker falco: 03:05:48.653069885: Notice A shell was spawned in a container with an attached terminal (user=root user_loginuid=-1 apache (id=3fa4ab24667c) shell=bash parent=runc cmdline=bash terminal=34816 container_id=3fa4ab24667c image=docker.io/library/httpd)
+Nov 22 03:08:21 cks-worker falco: 03:08:21.915768518: Error File below /etc opened for writing (user=root user_loginuid=-1 command=bash parent=<NA> pcmdline=<NA> file=/etc/passwd program=bash gparent=<NA> ggparent=<NA> gggparent=<NA> container_id=3fa4ab24667c image=docker.io/library/httpd)
+Nov 22 03:09:07 cks-worker falco: 03:09:07.368788427: Error Package management process launched in container (user=root user_loginuid=-1 command=apt-get update container_id=3fa4ab24667c container_name=apache image=docker.io/library/httpd:latest)
+Nov 22 03:10:01 cks-worker falco: 03:10:01.238932024: Warning Shell history had been deleted or renamed (user=root user_loginuid=-1 type=openat command=bash fd.name=/root/.bash_history name=/root/.bash_history path=<NA> oldpath=<NA> apache (id=3fa4ab24667c))
