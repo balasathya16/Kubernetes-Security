@@ -1,1 +1,4 @@
-test
+root@cks-master:/etc/kubernetes# ls
+admin.conf               kubelet.conf  pki
+controller-manager.conf  manifests     scheduler.conf
+root@cks-master:/etc/kubernetes# 
