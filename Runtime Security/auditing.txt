@@ -15,3 +15,40 @@ root@cks-master:~#
 root@cks-master:/etc/kubernetes/audit/logs# cat audit.log | grep secure
 {"kind":"Event","apiVersion":"audit.k8s.io/v1","level":"Metadata","auditID":"d9078d66-4200-4cb1-8d71-a5c05b6df06a","stage":"ResponseComplete","requestURI":"/api/v1/namespaces/default/secrets?fieldManager=kubectl-create\u0026fieldValidation=Strict","verb":"create","user":{"username":"kubernetes-admin","groups":["system:masters","system:authenticated"]},"sourceIPs":["10.128.0.5"],"userAgent":"kubectl/v1.28.2 (linux/amd64) kubernetes/89a4ea3","objectRef":{"resource":"secrets","namespace":"default","name":"secure","apiVersion":"v1"},"responseStatus":{"metadata":{},"code":201},"requestReceivedTimestamp":"2023-11-26T04:03:02.323795Z","stageTimestamp":"2023-11-26T04:03:02.331601Z","annotations":{"authorization.k8s.io/decision":"allow","authorization.k8s.io/reason":""}}
 
+2023-11-26T05:32:30.234405452Z stderr F I1126 05:32:30.234289       1 dynamic_cafile_content.go:157] "Starting controller" name="client-ca-bundle::/etc/kubernetes/pki/ca.crt"
+2023-11-26T05:32:30.234623943Z stderr F I1126 05:32:30.234546       1 dynamic_cafile_content.go:157] "Starting controller" name="request-header::/etc/kubernetes/pki/front-proxy-ca.crt"
+2023-11-26T05:32:30.461507587Z stderr F I1126 05:32:30.461337       1 controller.go:624] quota admission added evaluator for: leases.coordination.k8s.io
+2023-11-26T05:32:30.498300404Z stderr F I1126 05:32:30.498151       1 shared_informer.go:318] Caches are synced for node_authorizer
+2023-11-26T05:32:30.523314118Z stderr F I1126 05:32:30.523066       1 apf_controller.go:377] Running API Priority and Fairness config worker
+2023-11-26T05:32:30.523530588Z stderr F I1126 05:32:30.523444       1 apf_controller.go:380] Running API Priority and Fairness periodic rebalancing process
+2023-11-26T05:32:30.532744454Z stderr F I1126 05:32:30.525222       1 shared_informer.go:318] Caches are synced for crd-autoregister
+2023-11-26T05:32:30.533225852Z stderr F I1126 05:32:30.525416       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.533568923Z stderr F I1126 05:32:30.533461       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.53401494Z stderr F I1126 05:32:30.533899       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.534498105Z stderr F I1126 05:32:30.534408       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.535533919Z stderr F I1126 05:32:30.535427       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.535710177Z stderr F I1126 05:32:30.535634       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.535901043Z stderr F I1126 05:32:30.535775       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.536104366Z stderr F I1126 05:32:30.536027       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.536317312Z stderr F I1126 05:32:30.536240       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.536644656Z stderr F I1126 05:32:30.536552       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.536850842Z stderr F I1126 05:32:30.536775       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.537034066Z stderr F I1126 05:32:30.536955       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.537297142Z stderr F I1126 05:32:30.537200       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.537503824Z stderr F I1126 05:32:30.537427       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.537682885Z stderr F I1126 05:32:30.537569       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.537854512Z stderr F I1126 05:32:30.537783       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.538011202Z stderr F I1126 05:32:30.537921       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.538266273Z stderr F I1126 05:32:30.538190       1 handler.go:232] Adding GroupVersion crd.projectcalico.org v1 to ResourceManager
+2023-11-26T05:32:30.538373124Z stderr F I1126 05:32:30.538287       1 aggregator.go:166] initial CRD sync complete...
+2023-11-26T05:32:30.538385664Z stderr F I1126 05:32:30.538312       1 autoregister_controller.go:141] Starting autoregister controller
+2023-11-26T05:32:30.53839106Z stderr F I1126 05:32:30.538324       1 cache.go:32] Waiting for caches to sync for autoregister controller
+2023-11-26T05:32:30.538458491Z stderr F I1126 05:32:30.538385       1 cache.go:39] Caches are synced for autoregister controller
+2023-11-26T05:32:30.538767425Z stderr F I1126 05:32:30.528773       1 cache.go:39] Caches are synced for APIServiceRegistrationController controller
+2023-11-26T05:32:30.548310309Z stderr F I1126 05:32:30.530200       1 cache.go:39] Caches are synced for AvailableConditionController controller
+2023-11-26T05:32:30.549656523Z stderr F I1126 05:32:30.530601       1 shared_informer.go:318] Caches are synced for configmaps
+2023-11-26T05:32:30.549675711Z stderr F I1126 05:32:30.531824       1 shared_informer.go:318] Caches are synced for cluster_authentication_trust_controller
+2023-11-26T05:32:31.241583307Z stderr F I1126 05:32:31.241372       1 storage_scheduling.go:111] all system priority classes are created successfully or already exist.
+2023-11-26T05:32:31.573304636Z stderr F W1126 05:32:31.573122       1 lease.go:263] Resetting endpoints for master service "kubernetes" to [10.128.0.5]
+2023-11-26T05:32:31.575044587Z stderr F I1126 05:32:31.574919       1 controller.go:624] quota admission added evaluator for: endpoints
+2023-11-26T05:32:31.582072997Z stderr F I1126 05:32:31.581926       1 controller.go:624] quota admission added evaluator for: endpointslices.discovery.k8s.io
