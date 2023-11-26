@@ -12,4 +12,6 @@ root      802270  0.0  0.0   8168  2356 pts/0    S+   05:14   0:00 grep --color=
 root@cks-master:~# k create secret generic secure --from-literal=user=admin
 secret/secure created
 root@cks-master:~# 
+root@cks-master:/etc/kubernetes/audit/logs# cat audit.log | grep secure
+{"kind":"Event","apiVersion":"audit.k8s.io/v1","level":"Metadata","auditID":"d9078d66-4200-4cb1-8d71-a5c05b6df06a","stage":"ResponseComplete","requestURI":"/api/v1/namespaces/default/secrets?fieldManager=kubectl-create\u0026fieldValidation=Strict","verb":"create","user":{"username":"kubernetes-admin","groups":["system:masters","system:authenticated"]},"sourceIPs":["10.128.0.5"],"userAgent":"kubectl/v1.28.2 (linux/amd64) kubernetes/89a4ea3","objectRef":{"resource":"secrets","namespace":"default","name":"secure","apiVersion":"v1"},"responseStatus":{"metadata":{},"code":201},"requestReceivedTimestamp":"2023-11-26T04:03:02.323795Z","stageTimestamp":"2023-11-26T04:03:02.331601Z","annotations":{"authorization.k8s.io/decision":"allow","authorization.k8s.io/reason":""}}
 
