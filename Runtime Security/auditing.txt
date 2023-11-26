@@ -2,3 +2,14 @@ root@cks-master:/etc/kubernetes# ls
 admin.conf               kubelet.conf  pki
 controller-manager.conf  manifests     scheduler.conf
 root@cks-master:/etc/kubernetes# 
+
+
+root@cks-master:/etc/kubernetes/manifests# ps aux | grep api
+root      802093 42.0  6.7 969808 269648 ?       Ssl  05:14   0:06 kube-apiserver --audit-policy-file=/etc/kubernetes/audit/policy.yaml --audit-log-path=/etc/kubernetes/audit/logs/audit.log --audit-log-maxbackup=5 --audit-log-maxsize=500 --advertise-address=10.128.0.5 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --secure-port=6443 --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/12 --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+root      802270  0.0  0.0   8168  2356 pts/0    S+   05:14   0:00 grep --color=auto api
+
+
+root@cks-master:~# k create secret generic secure --from-literal=user=admin
+secret/secure created
+root@cks-master:~# 
+
