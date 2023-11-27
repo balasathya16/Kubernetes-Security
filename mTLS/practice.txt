@@ -1,0 +1,3 @@
+root@cks-master:~# k run app --image bash --command -o yaml --dry-run=client > app.yaml -- sh -c 'ping google.com'
+root@cks-master:~# vi app.yaml 
+root@cks-master:~# 
