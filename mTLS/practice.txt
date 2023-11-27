@@ -45,7 +45,7 @@ spec:
     command:
     - sh
     - -c
-    - 'apt get update && apt-get install iptables -y && iptables -L && sleep 1d'
+    - 'apt-get update && apt-get install iptables -y && iptables -L && sleep 1d'
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
