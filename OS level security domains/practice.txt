@@ -62,6 +62,45 @@ drwxr-xr-x    1 root     root        4.0K Nov 28 04:49 var
 -rw-r--r--    1 root     root           0 Nov 28 04:52 test
 / # 
 
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod
+  name: pod
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+  containers:
+  - command:
+    - sh
+    - -c
+    - sleep 1d
+    image: busybox
+    name: pod
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+----
+
+Events:
+  Type     Reason     Age               From               Message
+  ----     ------     ----              ----               -------
+  Normal   Scheduled  59s               default-scheduler  Successfully assigned default/pod to cks-worker
+  Normal   Pulled     57s               kubelet            Successfully pulled image "busybox" in 292ms (292ms including waiting)
+  Normal   Pulled     47s               kubelet            Successfully pulled image "busybox" in 314ms (314ms including waiting)
+  Normal   Pulled     35s               kubelet            Successfully pulled image "busybox" in 304ms (304ms including waiting)
+  Normal   Pulled     20s               kubelet            Successfully pulled image "busybox" in 300ms (300ms including waiting)
+  Normal   Pulling    7s (x6 over 59s)  kubelet            Pulling image "busybox"
+  Normal   Pulled     7s (x2 over 58s)  kubelet            Successfully pulled image "busybox" in 326ms (326ms including waiting)
+  Warning  Failed     7s (x6 over 58s)  kubelet            Error: container has runAsNonRoot and image will run as root (pod: "pod_default(31f39a61-0bec-4507-8380-0566590bf7bc)", container: pod)
+
+
+
 ---
 ~ $ id
 uid=1000 gid=3000
