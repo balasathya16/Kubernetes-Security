@@ -37,3 +37,19 @@ spec:
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}
+
+--
+
+root@cks-master:~# k exec -it pod -- sh
+/ # 
+/ # sysctl.kernel.hostname=test
+sh: sysctl.kernel.hostname=test: not found
+/ # i
+sh: i: not found
+/ # id
+uid=0(root) gid=0(root) groups=10(wheel)
+/ # sysctl kernel.hostname=docker
+kernel.hostname = docker
+/ # hostname
+docker
+/ # 
