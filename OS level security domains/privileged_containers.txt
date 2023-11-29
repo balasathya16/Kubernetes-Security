@@ -1,0 +1,39 @@
+root@cks-master:~# vi pod.yaml 
+root@cks-master:~# k delete pod pod --force --grace-period 0
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "pod" force deleted
+root@cks-master:~# k create -f pod.yaml 
+pod/pod created
+root@cks-master:~# k get pod
+NAME   READY   STATUS    RESTARTS   AGE
+pod    1/1     Running   0          2s
+root@cks-master:~# k exec -it pod -- sh
+~ $ 
+~ $ sysctl kernel.hostname=attak
+sysctl: error setting key 'kernel.hostname': Read-only file system
+~ $ sysctl kernel.hostname=test
+sysctl: error setting key 'kernel.hostname': Read-only file system
+~ $ 
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod
+  name: pod
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - sleep 1d
+    image: busybox
+    name: pod
+    resources: {}
+#    securityContext: 
+#      runAsNonRoot: true 
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
