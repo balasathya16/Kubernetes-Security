@@ -1,0 +1,12 @@
+root@cks-master:~# k run pod --image nginx 
+pod/pod created
+root@cks-master:~# k exec -it -- bash
+error: pod, type/name or --filename must be specified
+root@cks-master:~# k exec pod -it -- bash
+root@pod:/# uname -r
+5.15.0-1046-gcp
+root@pod:/# exit
+exit
+root@cks-master:~# uname -r
+5.15.0-1046-gcp
+root@cks-master:~# 
