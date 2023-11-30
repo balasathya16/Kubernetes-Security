@@ -7,3 +7,10 @@ metadata:
 # The name of the corresponding CRI configuration
 handler: runsc
 ~               
+
+Events:
+  Type     Reason                  Age               From               Message
+  ----     ------                  ----              ----               -------
+  Normal   Scheduled               88s               default-scheduler  Successfully assigned default/gvisor to cks-worker
+  Warning  FailedCreatePodSandBox  4s (x7 over 88s)  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to get sandbox runtime: no runtime for "runsc" is configured
+root@cks-master:~# 
