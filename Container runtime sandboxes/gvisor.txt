@@ -14,3 +14,85 @@ Events:
   Normal   Scheduled               88s               default-scheduler  Successfully assigned default/gvisor to cks-worker
   Warning  FailedCreatePodSandBox  4s (x7 over 88s)  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to get sandbox runtime: no runtime for "runsc" is configured
 root@cks-master:~# 
+
+
+--
+
+TTP request sent, awaiting response... 200 OK
+Length: 35074107 (33M) [application/octet-stream]
+Saving to: ‘runsc’
+
+runsc               100%[===================>]  33.45M  55.4MB/s    in 0.6s    
+
+2023-11-30 04:41:11 (55.4 MB/s) - ‘runsc’ saved [35074107/35074107]
+
+--2023-11-30 04:41:11--  https://storage.googleapis.com/gvisor/releases/release/20210806/x86_64/runsc.sha512
+Reusing existing connection to storage.googleapis.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 136 [application/octet-stream]
+Saving to: ‘runsc.sha512’
+
+runsc.sha512        100%[===================>]     136  --.-KB/s    in 0s      
+
+2023-11-30 04:41:11 (15.1 MB/s) - ‘runsc.sha512’ saved [136/136]
+
+--2023-11-30 04:41:11--  https://storage.googleapis.com/gvisor/releases/release/20210806/x86_64/containerd-shim-runsc-v1
+Reusing existing connection to storage.googleapis.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 24627868 (23M) [application/octet-stream]
+Saving to: ‘containerd-shim-runsc-v1’
+
+containerd-shim-run 100%[===================>]  23.49M   105MB/s    in 0.2s    
+
+2023-11-30 04:41:12 (105 MB/s) - ‘containerd-shim-runsc-v1’ saved [24627868/24627868]
+
+--2023-11-30 04:41:12--  https://storage.googleapis.com/gvisor/releases/release/20210806/x86_64/containerd-shim-runsc-v1.sha512
+Reusing existing connection to storage.googleapis.com:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 155 [application/octet-stream]
+Saving to: ‘containerd-shim-runsc-v1.sha512’
+
+containerd-shim-run 100%[===================>]     155  --.-KB/s    in 0s      
+
+2023-11-30 04:41:12 (15.4 MB/s) - ‘containerd-shim-runsc-v1.sha512’ saved [155/155]
+
+FINISHED --2023-11-30 04:41:12--
+Total wall clock time: 1.4s
+Downloaded: 4 files, 57M in 0.8s (68.9 MB/s)
+runsc: OK
+containerd-shim-runsc-v1: OK
+root@cks-worker:~# service containerd status
+● containerd.service - containerd container runtime
+     Loaded: loaded (/lib/systemd/system/containerd.service; enabled; vendor pr>
+     Active: active (running) since Thu 2023-11-30 04:41:12 UTC; 58s ago
+       Docs: https://containerd.io
+    Process: 7900 ExecStartPre=/sbin/modprobe overlay (code=exited, status=0/SU>
+   Main PID: 7901 (containerd)
+      Tasks: 234
+     Memory: 167.2M
+     CGroup: /system.slice/containerd.service
+             ├─1230 /usr/bin/containerd-shim-runc-v2 -namespace k8s.io -id 0ccf>
+             ├─1239 /usr/bin/containerd-shim-runc-v2 -namespace k8s.io -id 0f49>
+             ├─7901 /usr/bin/containerd
+             ├─7984 /usr/local/bin/containerd-shim-runsc-v1 -namespace k8s.io ->
+             ├─7998 runsc-gofer --root=/run/containerd/runsc/k8s.io --log=/run/>
+             ├─7999 runsc-sandbox --root=/run/containerd/runsc/k8s.io --log=/ru>
+             ├─8018 [exe]
+---
+root@cks-master:~# k get pod
+NAME     READY   STATUS    RESTARTS   AGE
+gvisor   1/1     Running   0          23h
+root@cks-master:~# k exec gvisor -it -- sh
+# dmesg
+[    0.000000] Starting gVisor...
+[    0.389059] Adversarially training Redcode AI...
+[    0.446339] Waiting for children...
+[    0.679441] Digging up root...
+[    0.740168] Granting licence to kill(2)...
+[    1.212628] Feeding the init monster...
+[    1.276484] Searching for needles in stacks...
+[    1.382869] Conjuring /dev/null black hole...
+[    1.652288] Checking naughty and nice process list...
+[    1.841435] Singleplexing /dev/ptmx...
+[    2.123543] Creating cloned children...
+[    2.466694] Ready!
