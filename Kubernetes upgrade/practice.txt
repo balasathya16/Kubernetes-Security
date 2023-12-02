@@ -1,0 +1,23 @@
+root@cks-master:~# systemctl status kubelet
+Warning: The unit file, source configuration file or drop-ins of kubelet.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+● kubelet.service
+     Loaded: masked (Reason: Unit kubelet.service is masked.)
+    Drop-In: /etc/systemd/system/kubelet.service.d
+             └─10-kubeadm.conf
+     Active: inactive (dead) since Sat 2023-12-02 04:29:50 UTC; 5min ago
+   Main PID: 1155 (code=exited, status=0/SUCCESS)
+
+Nov 30 04:21:06 cks-master kubelet[1155]: E1130 04:21:06.583860    1155 remote_runtime.go:222] "StopPodSandbox from runtime service failed" err="rpc error: code = NotFo>
+Nov 30 04:21:06 cks-master kubelet[1155]: E1130 04:21:06.584000    1155 kuberuntime_manager.go:1075] "killPodWithSyncResult failed" err="failed to \"KillPodSandbox\" fo>
+Nov 30 04:21:06 cks-master kubelet[1155]: E1130 04:21:06.584075    1155 pod_workers.go:1300] "Error syncing pod, skipping" err="failed to \"KillPodSandbox\" for \"17c93>
+Nov 30 04:21:06 cks-master kubelet[1155]: E1130 04:21:06.601780    1155 kuberuntime_manager.go:1075] "killPodWithSyncResult failed" err="failed to \"KillPodSandbox\" fo>
+Nov 30 04:21:06 cks-master kubelet[1155]: E1130 04:21:06.601914    1155 pod_workers.go:1300] "Error syncing pod, skipping" err="failed to \"KillPodSandbox\" for \"30690>
+Nov 30 09:50:26 cks-master kubelet[1155]: W1130 09:50:26.928487    1155 watcher.go:93] Error while processing event ("/sys/fs/cgroup/pids/system.slice/gce-workload-cert>
+Dec 02 04:29:50 cks-master systemd[1]: Stopping kubelet: The Kubernetes Node Agent...
+Dec 02 04:29:50 cks-master kubelet[1155]: I1202 04:29:50.209222    1155 dynamic_cafile_content.go:171] "Shutting down controller" name="client-ca-bundle::/etc/kubernete>
+Dec 02 04:29:50 cks-master systemd[1]: kubelet.service: Succeeded.
+Dec 02 04:29:50 cks-master systemd[1]: Stopped kubelet: The Kubernetes Node Agent.
+lines 1-18/18 (END)
+root@cks-master:~# systemctl start kubelet
+Failed to start kubelet.service: Unit kubelet.service is masked.
+root@cks-master:~# 
