@@ -1,0 +1,6 @@
+root@cks-master:~# k create secret generic secret1 --from-literal user=admin
+secret/secret1 created
+root@cks-master:~# 
+
+
+
