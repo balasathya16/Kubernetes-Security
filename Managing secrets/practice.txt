@@ -63,3 +63,100 @@ sh: 6: cd: can't cd to user
 # cat user
 admin# 
 
+
+----
+
+
+1024 1088 0:118 / /proc/acpi ro,relatime - tmpfs tmpfs ro,inode64
+1025 1088 0:115 /null /proc/kcore rw,nosuid - tmpfs tmpfs rw,size=65536k,mode=755,inode64
+1026 1088 0:115 /null /proc/keys rw,nosuid - tmpfs tmpfs rw,size=65536k,mode=755,inode64
+1027 1088 0:115 /null /proc/timer_list rw,nosuid - tmpfs tmpfs rw,size=65536k,mode=755,inode64
+1028 1088 0:119 / /proc/scsi ro,relatime - tmpfs tmpfs ro,inode64
+1029 1092 0:120 / /sys/firmware ro,relatime - tmpfs tmpfs ro,inode64
+root@cks-worker:/proc/29113# ls
+arch_status  clear_refs          cpuset   fdinfo    map_files  mountstats  oom_score      projid_map  setgroups     statm           timers
+attr         cmdline             cwd      gid_map   maps       net         oom_score_adj  root        smaps         status          timerslack_ns
+autogroup    comm                environ  io        mem        ns          pagemap        sched       smaps_rollup  syscall         uid_map
+auxv         coredump_filter     exe      limits    mountinfo  numa_maps   patch_state    schedstat   stack         task            wchan
+cgroup       cpu_resctrl_groups  fd       loginuid  mounts     oom_adj     personality    sessionid   stat          timens_offsets
+root@cks-worker:/proc/29113# cd root
+root@cks-worker:/proc/29113/root# ls
+bin  boot  dev  docker-entrypoint.d  docker-entrypoint.sh  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@cks-worker:/proc/29113/root# cd etc/
+root@cks-worker:/proc/29113/root/etc# ls
+adduser.conf            cron.d          e2scrub.conf  gshadow    issue          localtime      opt         profile.d  rc6.d        shadow   systemd
+alternatives            cron.daily      environment   gshadow-   issue.net      login.defs     os-release  rc0.d      rcS.d        shadow-  terminfo
+apt                     debconf.conf    fonts         gss        kernel         logrotate.d    pam.conf    rc1.d      resolv.conf  shells   timezone
+bash.bashrc             debian_version  fstab         host.conf  ld.so.cache    mke2fs.conf    pam.d       rc2.d      rmt          skel     update-motd.d
+bindresvport.blacklist  default         gai.conf      hostname   ld.so.conf     motd           passwd      rc3.d      secret1      ssl      xattr.conf
+ca-certificates         deluser.conf    group         hosts      ld.so.conf.d   nginx          passwd-     rc4.d      security     subgid
+ca-certificates.conf    dpkg            group-        init.d     libaudit.conf  nsswitch.conf  profile     rc5.d      selinux      subuid
+root@cks-worker:/proc/29113/root/etc# cd se
+secret1/  security/ selinux/  
+root@cks-worker:/proc/29113/root/etc# cd se
+secret1/  security/ selinux/  
+root@cks-worker:/proc/29113/root/etc# cd se
+secret1/  security/ selinux/  
+root@cks-worker:/proc/29113/root/etc# cd secret1/
+root@cks-worker:/proc/29113/root/etc/secret1# ls
+user
+root@cks-worker:/proc/29113/root/etc/secret1# cd user
+-bash: cd: user: Not a directory
+root@cks-worker:/proc/29113/root/etc/secret1# cat user 
+adminroot@cks-worker:/proc/29113/root/etc/secret1# cat user /n
+admincat: /n: No such file or directory
+root@cks-worker:/proc/29113/root/etc/secret1# cat user -n
+     1	adminroot@cks-worker:/proc/29113/root/etc/secret1# cat user -nl
+cat: invalid option -- 'l'
+Try 'cat --help' for more information.
+root@cks-worker:/proc/29113/root/etc/secret1# cat
+^C
+root@cks-worker:/proc/29113/root/etc/secret1# cat --help 
+Usage: cat [OPTION]... [FILE]...
+Concatenate FILE(s) to standard output.
+
+With no FILE, or when FILE is -, read standard input.
+
+  -A, --show-all           equivalent to -vET
+  -b, --number-nonblank    number nonempty output lines, overrides -n
+  -e                       equivalent to -vE
+  -E, --show-ends          display $ at end of each line
+  -n, --number             number all output lines
+  -s, --squeeze-blank      suppress repeated empty output lines
+  -t                       equivalent to -vT
+  -T, --show-tabs          display TAB characters as ^I
+  -u                       (ignored)
+  -v, --show-nonprinting   use ^ and M- notation, except for LFD and TAB
+      --help     display this help and exit
+      --version  output version information and exit
+
+Examples:
+  cat f - g  Output f's contents, then standard input, then g's contents.
+  cat        Copy standard input to standard output.
+
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+Report cat translation bugs to <https://translationproject.org/team/>
+Full documentation at: <https://www.gnu.org/software/coreutils/cat>
+or available locally via: info '(coreutils) cat invocation'
+root@cks-worker:/proc/29113/root/etc/secret1# cat user -b
+     1	adminroot@cks-worker:/proc/29113/root/etc/secret1# cat user -T
+adminroot@cks-worker:/proc/29113/root/etc/secret1# 
+root@cks-master:~# ETCDCTL_API=3 etcdctl --cert /etc/kubernetes/pki/apiserver-etcd-client.crt --key /etc/kubernetes/pki/apiserver-etcd-client.key --cacert /etc/kubernetes/pki/etcd/ca.crt endpoint health
+127.0.0.1:2379 is healthy: successfully committed proposal: took = 18.891539ms
+root@cks-master:~# 
+root@cks-master:~# ETCDCTL_API=3 etcdctl --cert /etc/kubernetes/pki/apiserver-etcd-client.crt --key /etc/kubernetes/pki/apiserver-etcd-client.key --cacert /etc/kubernetes/pki/etcd/ca.crt endpoint health
+127.0.0.1:2379 is healthy: successfully committed proposal: took = 18.891539ms
+root@cks-master:~# ETCDCTL_API=3 etcdctl --cert /etc/kubernetes/pki/apiserver-etcd-client.crt --key /etc/kubernetes/pki/apiserver-etcd-client.key --cacert /etc/kubernetes/pki/etcd/ca.crt get /registry/secrets
+root@cks-master:~# ETCDCTL_API=3 etcdctl --cert /etc/kubernetes/pki/apiserver-etcd-client.crt --key /etc/kubernetes/pki/apiserver-etcd-client.key --cacert /etc/kubernetes/pki/etcd/ca.crt get /registry/secrets/default/secret2
+/registry/secrets/default/secret2
+k8s
+
+
+v1Secret�
+�
+secret2�default"*$76c766ed-3e80-4215-ae37-a1600361e5062ɴ���e
+kubectl-createUpdate�vɴ��FieldsV1:1
+/{"f:data":{".":{},"f:password":{}},"f:type":{}}B
+password1234�Opaque�"
+root@cks-master:~# 
+
