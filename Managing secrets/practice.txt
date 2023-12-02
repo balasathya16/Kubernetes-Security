@@ -3,4 +3,63 @@ secret/secret1 created
 root@cks-master:~# 
 
 
+Events:
+  Type     Reason     Age                    From               Message
+  ----     ------     ----                   ----               -------
+  Normal   Scheduled  5m22s                  default-scheduler  Successfully assigned default/pod to cks-worker
+  Normal   Pulled     5m15s                  kubelet            Successfully pulled image "nginx" in 5.395s (5.395s including waiting)
+  Normal   Pulled     5m15s                  kubelet            Successfully pulled image "nginx" in 320ms (320ms including waiting)
+  Normal   Pulled     4m59s                  kubelet            Successfully pulled image "nginx" in 326ms (326ms including waiting)
+  Normal   Pulled     4m43s                  kubelet            Successfully pulled image "nginx" in 322ms (322ms including waiting)
+  Normal   Pulled     4m32s                  kubelet            Successfully pulled image "nginx" in 307ms (307ms including waiting)
+  Normal   Pulled     4m20s                  kubelet            Successfully pulled image "nginx" in 415ms (415ms including waiting)
+  Normal   Pulled     4m8s                   kubelet            Successfully pulled image "nginx" in 305ms (305ms including waiting)
+  Warning  Failed     3m56s (x8 over 5m15s)  kubelet            Error: couldn't find key pass in Secret default/secret2
+  Normal   Pulled     3m56s                  kubelet            Successfully pulled image "nginx" in 354ms (354ms including waiting)
+  Normal   Pulling    20s (x25 over 5m21s)   kubelet            Pulling image "nginx"
+root@cks-master:~# k describe secrets secret2
+Name:         secret2
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Type:  Opaque
+
+Data
+====
+password:  4 bytes
+root@cks-master:~# k edit secrets secret2
+Edit cancelled, no changes made.
+root@cks-master:~# vi pod.yaml 
+root@cks-master:~# k replace -f pod.yaml --force 
+pod "pod" deleted
+pod/pod replaced
+root@cks-master:~# k get pod pod 
+NAME   READY   STATUS    RESTARTS   AGE
+pod    1/1     Running   0          3s
+root@cks-master:~# 
+
+root@cks-master:~# k edit secrets secret2
+Edit cancelled, no changes made.
+root@cks-master:~# vi pod.yaml 
+root@cks-master:~# k replace -f pod.yaml --force 
+pod "pod" deleted
+pod/pod replaced
+root@cks-master:~# k get pod pod 
+NAME   READY   STATUS    RESTARTS   AGE
+pod    1/1     Running   0          3s
+root@cks-master:~# k exec pod -it -- sh
+# env | grep PASS
+PASSWORD=1234
+# mount | grep secret1	
+tmpfs on /etc/secret1 type tmpfs (ro,relatime,size=3900176k,inode64)
+# cat /etc/secret1
+cat: /etc/secret1: Is a directory
+# cd /etc/secret1
+# ls
+user
+# cd user
+sh: 6: cd: can't cd to user
+# cat user
+admin# 
 
