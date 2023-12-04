@@ -16,3 +16,23 @@ resources:
 ~                                                                                                                                                                        
 ~                                                                                                                                                                        
 ~           
+
+
+bala@cks-master:~$ k get secrets
+k: command not found
+bala@cks-master:~$ sudo -i
+root@cks-master:~# k get secrets 
+NAME      TYPE     DATA   AGE
+secret1   Opaque   1      31h
+secret2   Opaque   1      31h
+root@cks-master:~# cd /etc/kubernetes/
+root@cks-master:/etc/kubernetes# mkdir etcd
+root@cks-master:/etc/kubernetes# cd etcd/
+root@cks-master:/etc/kubernetes/etcd# vi ec.yaml
+root@cks-master:/etc/kubernetes/etcd# echo pass | base64 -d
+��,root@cks-master:/etc/kubernetes/etcd# echo pass | base64
+cGFzcwo=
+root@cks-master:/etc/kubernetes/etcd# echo -n pass | base64
+cGFzcw==
+root@cks-master:/etc/kubernetes/etcd# vi ec.yaml
+root@cks-master:/etc/kubernetes/etcd# 
