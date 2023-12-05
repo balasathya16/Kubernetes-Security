@@ -78,3 +78,14 @@ spec:
     - --service-account-issuer=https://kubernetes.default.svc.cluster.local
 
 
+2023-12-05T05:09:19.033237888Z stderr F I1205 05:09:19.033171       1 apf_controller.go:380] Running API Priority and Fairness periodic rebalancing process
+2023-12-05T05:09:19.033654644Z stderr F I1205 05:09:19.033543       1 aggregator.go:166] initial CRD sync complete...
+2023-12-05T05:09:19.033817742Z stderr F I1205 05:09:19.033736       1 autoregister_controller.go:141] Starting autoregister controller
+2023-12-05T05:09:19.034054825Z stderr F I1205 05:09:19.033969       1 cache.go:32] Waiting for caches to sync for autoregister controller
+2023-12-05T05:09:19.034219839Z stderr F I1205 05:09:19.034139       1 cache.go:39] Caches are synced for autoregister controller
+2023-12-05T05:09:19.051976356Z stderr F I1205 05:09:19.051837       1 shared_informer.go:318] Caches are synced for node_authorizer
+2023-12-05T05:09:19.822354734Z stderr F I1205 05:09:19.822202       1 storage_scheduling.go:111] all system priority classes are created successfully or already exist.
+2023-12-05T05:09:20.094165233Z stderr F W1205 05:09:20.093978       1 lease.go:263] Resetting endpoints for master service "kubernetes" to [10.128.0.7]
+2023-12-05T05:09:20.097939446Z stderr F I1205 05:09:20.097792       1 controller.go:624] quota admission added evaluator for: endpoints
+2023-12-05T05:09:20.105298469Z stderr F I1205 05:09:20.105111       1 controller.go:624] quota admission added evaluator for: endpointslices.discovery.k8s.io
+root@cks-master:/var/log/pods/kube-system_kube-apiserver-cks-master_6a5086ca91ff8c123865e31852848ae5/kube-apiserver# k get pod
