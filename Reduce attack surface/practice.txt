@@ -1,0 +1,32 @@
+bala@cks-master:~$ systemctl status snapd
+● snapd.service - Snap Daemon
+     Loaded: loaded (/lib/systemd/system/snapd.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sat 2023-12-02 19:45:52 UTC; 3 days ago
+TriggeredBy: ● snapd.socket
+   Main PID: 610 (snapd)
+      Tasks: 11 (limit: 4680)
+     Memory: 22.0M
+     CGroup: /system.slice/snapd.service
+             └─610 /usr/lib/snapd/snapd
+
+Dec 03 18:15:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 04 01:25:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 04 10:30:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 04 17:15:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 04 22:35:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 05 01:15:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 05 09:55:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 05 17:20:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 05 21:30:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+Dec 06 00:40:53 cks-master snapd[610]: storehelpers.go:773: cannot refresh: snap has no updates available: "core20", "google-cloud-cli", "lxd", "snapd"
+bala@cks-master:~$ 
+bala@cks-master:~$ systemctl list-units | grep snapd
+  run-snapd-ns-lxd.mnt.mount                                                                                                                    loaded active     mounted   /run/snapd/ns/lxd.mnt                                                                                                       
+  run-snapd-ns.mount                                                                                                                            loaded active     mounted   /run/snapd/ns                                                                                                               
+  snap-snapd-20290.mount                                                                                                                        loaded active     mounted   Mount unit for snapd, revision 20290                                                                                        
+  snapd.apparmor.service                                                                                                                        loaded active     exited    Load AppArmor profiles managed internally by snapd                                                                          
+  snapd.seeded.service                                                                                                                          loaded active     exited    Wait until snapd is fully seeded                                                                                            
+  snapd.service                                                                                                                                 loaded active     running   Snap Daemon                                                                                                                 
+  snapd.socket                                                                                                                                  loaded active     running   Socket activation for snappy daemon                                                                                         
+  snapd.mounts-pre.target                                                                                                                       loaded active     active    Mounting snaps                                                                                                              
+  snapd.mounts.target                                                                                                                           loaded active     active    Mounted snaps       
