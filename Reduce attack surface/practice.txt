@@ -45,3 +45,8 @@ bala@cks-master:~$ systemctl list-units | grep snapd
 Dec 07 02:25:25 cks-master systemd[1]: Starting vsftpd FTP server...
 Dec 07 02:25:25 cks-master systemd[1]: Started vsftpd FTP server.
 root@cks-master:~# 
+
+root@cks-master:~# ps aux | grep vsftpd
+root     2915093  0.0  0.0   6812  2956 ?        Ss   02:25   0:00 /usr/sbin/vsftpd /etc/vsftpd.conf
+root     2917150  0.0  0.0   8168   720 pts/0    S+   02:27   0:00 grep --color=auto vsftpd
+root@cks-master:~# 
