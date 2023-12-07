@@ -30,3 +30,18 @@ bala@cks-master:~$ systemctl list-units | grep snapd
   snapd.socket                                                                                                                                  loaded active     running   Socket activation for snappy daemon                                                                                         
   snapd.mounts-pre.target                                                                                                                       loaded active     active    Mounting snaps                                                                                                              
   snapd.mounts.target                                                                                                                           loaded active     active    Mounted snaps       
+
+
+  root@cks-master:~# systemctl status vsftpd
+● vsftpd.service - vsftpd FTP server
+     Loaded: loaded (/lib/systemd/system/vsftpd.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2023-12-07 02:25:25 UTC; 31s ago
+   Main PID: 2915093 (vsftpd)
+      Tasks: 1 (limit: 4680)
+     Memory: 520.0K
+     CGroup: /system.slice/vsftpd.service
+             └─2915093 /usr/sbin/vsftpd /etc/vsftpd.conf
+
+Dec 07 02:25:25 cks-master systemd[1]: Starting vsftpd FTP server...
+Dec 07 02:25:25 cks-master systemd[1]: Started vsftpd FTP server.
+root@cks-master:~# 
