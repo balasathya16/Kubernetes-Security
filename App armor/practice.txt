@@ -7,3 +7,52 @@ The document has moved
 </BODY></HTML>
 root@cks-worker:~# 
 
+root@cks-worker:~# aa-genprof curl
+Writing updated profile for /usr/bin/curl.
+Setting /usr/bin/curl to complain mode.
+
+Before you begin, you may wish to check if a
+profile already exists for the application you
+wish to confine. See the following wiki page for
+more information:
+https://gitlab.com/apparmor/apparmor/wikis/Profiles
+
+Profiling: /usr/bin/curl
+
+Please start the application to be profiled in
+another window and exercise its functionality now.
+
+Once completed, select the "Scan" option below in 
+order to scan the system logs for AppArmor events. 
+
+For each AppArmor event, you will be given the 
+opportunity to choose whether the access should be 
+allowed or denied.
+
+[(S)can system log for AppArmor events] / (F)inish
+
+Profiling: /usr/bin/curl
+
+Please start the application to be profiled in
+another window and exercise its functionality now.
+
+Once completed, select the "Scan" option below in 
+order to scan the system logs for AppArmor events. 
+
+For each AppArmor event, you will be given the 
+opportunity to choose whether the access should be 
+allowed or denied.
+
+[(S)can system log for AppArmor events] / (F)inish
+Setting /usr/bin/curl to enforce mode.
+
+Reloaded AppArmor profiles in enforce mode.
+
+Please consider contributing your new profile!
+See the following wiki page for more information:
+https://gitlab.com/apparmor/apparmor/wikis/Profiles
+
+Finished generating profile for /usr/bin/curl.
+root@cks-worker:~# curl google.com
+curl: (6) Could not resolve host: google.com
+root@cks-worker:~# 
