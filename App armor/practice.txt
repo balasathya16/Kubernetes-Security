@@ -56,3 +56,108 @@ Finished generating profile for /usr/bin/curl.
 root@cks-worker:~# curl google.com
 curl: (6) Could not resolve host: google.com
 root@cks-worker:~# 
+
+root@cks-worker:~# aa-genprof curl
+Writing updated profile for /usr/bin/curl.
+Setting /usr/bin/curl to complain mode.
+
+Before you begin, you may wish to check if a
+profile already exists for the application you
+wish to confine. See the following wiki page for
+more information:
+https://gitlab.com/apparmor/apparmor/wikis/Profiles
+
+Profiling: /usr/bin/curl
+
+Please start the application to be profiled in
+another window and exercise its functionality now.
+
+Once completed, select the "Scan" option below in 
+order to scan the system logs for AppArmor events. 
+
+For each AppArmor event, you will be given the 
+opportunity to choose whether the access should be 
+allowed or denied.
+
+[(S)can system log for AppArmor events] / (F)inish
+
+Profiling: /usr/bin/curl
+
+Please start the application to be profiled in
+another window and exercise its functionality now.
+
+Once completed, select the "Scan" option below in 
+order to scan the system logs for AppArmor events. 
+
+For each AppArmor event, you will be given the 
+opportunity to choose whether the access should be 
+allowed or denied.
+
+[(S)can system log for AppArmor events] / (F)inish
+Setting /usr/bin/curl to enforce mode.
+
+Reloaded AppArmor profiles in enforce mode.
+
+Please consider contributing your new profile!
+See the following wiki page for more information:
+https://gitlab.com/apparmor/apparmor/wikis/Profiles
+
+Finished generating profile for /usr/bin/curl.
+root@cks-worker:~# curl google.com
+curl: (6) Could not resolve host: google.com
+root@cks-worker:~# 
+
+
+root@cks-worker:~# vi /etc/apparmor.d/docker-nginx
+root@cks-worker:~# apparmor_parser /etc/apparmor.d/docker-nginx
+root@cks-worker:~# aa-status 
+apparmor module is loaded.
+39 profiles are loaded.
+33 profiles are in enforce mode.
+   /snap/snapd/20290/usr/lib/snapd/snap-confine
+   /snap/snapd/20290/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+   /usr/bin/curl
+   /usr/bin/man
+   /usr/lib/NetworkManager/nm-dhcp-client.action
+   /usr/lib/NetworkManager/nm-dhcp-helper
+   /usr/lib/connman/scripts/dhclient-script
+   /usr/lib/snapd/snap-confine
+   /usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+   /usr/sbin/chronyd
+   /usr/sbin/tcpdump
+   /{,usr/}sbin/dhclient
+   docker-default
+   docker-nginx
+   lsb_release
+   man_filter
+   man_groff
+   nvidia_modprobe
+   nvidia_modprobe//kmod
+   snap-update-ns.google-cloud-cli
+   snap-update-ns.lxd
+   snap.lxd.activate
+   snap.lxd.benchmark
+   snap.lxd.buginfo
+   snap.lxd.check-kernel
+   snap.lxd.daemon
+   snap.lxd.hook.configure
+   snap.lxd.hook.install
+   snap.lxd.hook.remove
+   snap.lxd.lxc
+   snap.lxd.lxc-to-lxd
+   snap.lxd.lxd
+   snap.lxd.migrate
+6 profiles are in complain mode.
+   snap.google-cloud-cli.anthoscli
+   snap.google-cloud-cli.bq
+   snap.google-cloud-cli.docker-credential-gcloud
+   snap.google-cloud-cli.gcloud
+   snap.google-cloud-cli.gsutil
+   snap.google-cloud-cli.kubectl
+2 processes have profiles defined.
+2 processes are in enforce mode.
+   /usr/sbin/chronyd (497) 
+   /usr/sbin/chronyd (498) 
+0 processes are in complain mode.
+0 processes are unconfined but have a profile defined.
+root@cks-worker:~# 
