@@ -1,0 +1,13 @@
+Warning: spec.template.metadata.annotations[container.seccomp.security.alpha.kubernetes.io/manager]: non-functional in v1.27+; use the "seccompProfile" field instead
+deployment.apps/gatekeeper-audit created
+deployment.apps/gatekeeper-controller-manager created
+validatingwebhookconfiguration.admissionregistration.k8s.io/gatekeeper-validating-webhook-configuration created
+root@cks-master:~# ls
+pod.yaml  snap
+root@cks-master:~# k get pod
+No resources found in default namespace.
+root@cks-master:~# vi template.yaml
+root@cks-master:~# k create -f template.yaml 
+constrainttemplate.templates.gatekeeper.sh/k8srequiredlabels created
+root@cks-master:~# vi constraints.yaml
+root@cks-master:~# 
