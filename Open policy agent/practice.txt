@@ -11,3 +11,7 @@ root@cks-master:~# k create -f template.yaml
 constrainttemplate.templates.gatekeeper.sh/k8srequiredlabels created
 root@cks-master:~# vi constraints.yaml
 root@cks-master:~# 
+
+root@cks-master:~# k create ns ele
+Error from server ([ns-must-have-cks] you must provide labels: {"cks"}): admission webhook "validation.gatekeeper.sh" denied the request: [ns-must-have-cks] you must provide labels: {"cks"}
+root@cks-master:~# 

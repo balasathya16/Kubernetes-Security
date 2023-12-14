@@ -144,7 +144,7 @@ apparmor module is loaded.
    snap.lxd.hook.install
    snap.lxd.hook.remove
    snap.lxd.lxc
-   snap.lxd.lxc-to-l    xd
+   snap.lxd.lxc-to-l            xd
    snap.lxd.lxd
    snap.lxd.migrate
 6 profiles are in complain mode.
