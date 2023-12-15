@@ -38,3 +38,4 @@ Nov 14 00:48:03 cks-master kubelet[1245]: E1114 00:48:03.530885    1245 pod_work
 root@cks-master:/etc/systemd# chmod 600 /etc/systemd/
 journald.conf  logind.conf    network/       networkd.conf  pstore.conf    resolved.conf  sleep.conf     system/        system.conf    user/          user.conf
 root@cks-master:/etc/systemd# chmod 600 /etc/systemd/system
+test
