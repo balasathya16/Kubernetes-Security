@@ -1,0 +1,1 @@
+ref: https://github.com/falcosecurity/rules/blob/main/rules/falco_rules.yaml
