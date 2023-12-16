@@ -1,1 +1,6 @@
 ref: https://github.com/falcosecurity/rules/blob/main/rules/falco_rules.yaml
+
+cloud_user@k8s-worker1:~$ k get pod
+NAME      READY   STATUS    RESTARTS   AGE
+monitor   1/1     Running   1          21m
+cloud_user@k8s-worker1:~$
