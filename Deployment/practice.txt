@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immutable-deployment
+  namespace: team-purple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: immutable
+  template:
+    metadata:
+      labels:
+        app: immutable
+    spec:
+      containers:
+      - name: your-container-name
+        image: your-image-name:your-image-tag
+        volumeMounts:
+        - name: tmp-volume
+          mountPath: /tmp
+      volumes:
+      - name: tmp-volume
+        emptyDir: {}
+      securityContext:
+        readOnlyRootFilesystem: true
