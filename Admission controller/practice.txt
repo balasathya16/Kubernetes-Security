@@ -3,3 +3,39 @@ kind: AdmissionConfiguration
 plugins:
 - name: ImagePolicyWebhook
   path: imagepolicy.conf
+
+  cloud_user@k8s-control:/etc/kubernetes/admission-control$ vi /etc/kubernetes/manifests/kube-apiserver.yaml
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ sudo !!
+sudo vi /etc/kubernetes/manifests/kube-apiserver.yaml
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ l
+admission-control.conf  api-server-client.crt  api-server-client.key  imagepolicy.conf  imagepolicy_backend.kubeconfig  imagepolicywebhook-ca.crt
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ sudo vi admission-control.conf
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ vi admission-control.conf
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ cat imagepolicy
+cat: imagepolicy: No such file or directory
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ cat imagepolicy.conf
+{
+   "imagePolicy": {
+      "kubeConfigFile": "/etc/kubernetes/admission-control/imagepolicy_backend.kubeconfig",
+      "allowTTL": 50,
+      "denyTTL": 50,
+      "retryBackoff": 500,
+      "defaultAllow": true
+   }
+}
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ sudo
+Display all 1718 possibilities? (y or n)
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ sudo vi imagepolicy.conf
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ cat imagepolicy
+cat: imagepolicy: No such file or directory
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ cat imagepolicy.conf
+{
+   "imagePolicy": {
+      "kubeConfigFile": "/etc/kubernetes/admission-control/imagepolicy_backend.kubeconfig",
+      "allowTTL": 50,
+      "denyTTL": 50,
+      "retryBackoff": 500,
+      "defaultAllow": false
+   }
+}
+cloud_user@k8s-control:/etc/kubernetes/admission-control$
