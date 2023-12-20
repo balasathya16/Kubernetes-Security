@@ -39,3 +39,33 @@ cloud_user@k8s-control:/etc/kubernetes/admission-control$ cat imagepolicy.conf
    }
 }
 cloud_user@k8s-control:/etc/kubernetes/admission-control$
+
+
+cloud_user@k8s-control:/etc/kubernetes/admission-control$ cat imagepolicy_backend.kubeconfig
+apiVersion: v1
+kind: Config
+clusters:
+- name: trivy-k8s-webhook
+  cluster:
+    certificate-authority: /etc/kubernetes/admission-control/imagepolicywebhook-ca.crt
+    server: https://acg.trivy.k8s.webhook:8090/scan
+contexts:
+- name: trivy-k8s-webhook
+  context:
+    cluster: trivy-k8s-webhook
+    user: api-server
+current-context: trivy-k8s-webhook
+preferences: {}
+users:
+- name: api-server
+  user:
+    client-certificate: /etc/kubernetes/admission-control/api-server-client.crt
+    client-key: /etc/kubernetes/admission-control/api-server-client.key
+cloud_user@k8s-control:/etc/kubernetes/admission-control$
+
+
+cloud_user@k8s-cli:~$ k create -f no-vulns-pod.yml
+pod/no-vulns-pod created
+cloud_user@k8s-cli:~$ k create -f vulns-pod.yml
+Error from server (Forbidden): error when creating "vulns-pod.yml": pods "vulns-pod" is forbidden: image policy webhook backend denied one or more images: Image(s) contain serious vulnerabilities: [nginx:1.14.2]
+cloud_user@k8s-cli:~$
