@@ -10,3 +10,8 @@ PolicyRule:
   ---------  -----------------  --------------  -----
   pods       []                 []              [list]
 cloud_user@k8s-cli:~$
+
+cloud_user@k8s-cli:~$ k create role watch-services-secrets --verb=watch --resource=services,secrets
+role.rbac.authorization.k8s.io/watch-services-secrets created
+cloud_user@k8s-cli:~$
+
