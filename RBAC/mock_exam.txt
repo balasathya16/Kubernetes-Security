@@ -1,0 +1,12 @@
+role.rbac.authorization.k8s.io/buffy-role edited
+cloud_user@k8s-cli:~$
+
+cloud_user@k8s-cli:~$ k describe role -n sunnydale
+Name:         buffy-role
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [list]
+cloud_user@k8s-cli:~$
