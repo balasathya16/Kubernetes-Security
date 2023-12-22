@@ -1,0 +1,30 @@
+cloud_user@k8s-control:~$ cd /etc/kubernetes/manifests/
+cloud_user@k8s-control:/etc/kubernetes/manifests$ ls
+etcd.yaml  kube-apiserver.yaml  kube-controller-manager.yaml  kube-scheduler.yaml
+cloud_user@k8s-control:/etc/kubernetes/manifests$ sudo vi etcd.yaml
+cloud_user@k8s-control:/etc/kubernetes/manifests$ k get pod -n kube^C^C
+cloud_user@k8s-control:/etc/kubernetes/manifests$ ^C
+cloud_user@k8s-control:/etc/kubernetes/manifests$ ^C
+cloud_user@k8s-control:/etc/kubernetes/manifests$ k get pod -n kube-system
+NAME                                       READY   STATUS             RESTARTS         AGE
+calico-kube-controllers-56cdb7c587-6qj4d   0/1     CrashLoopBackOff   23 (5m17s ago)   155m
+calico-node-gdwnp                          1/1     Running            0                155m
+calico-node-q854l                          1/1     Running            0                155m
+coredns-6d4b75cb6d-vc8mp                   1/1     Running            0                155m
+coredns-6d4b75cb6d-vx5qc                   1/1     Running            0                155m
+etcd-k8s-control                           1/1     Running            1 (154m ago)     152m
+kube-apiserver-k8s-control                 1/1     Running            0                4m53s
+kube-controller-manager-k8s-control        1/1     Running            23 (5m12s ago)   156m
+kube-proxy-5g8dp                           1/1     Running            0                155m
+kube-proxy-srdk5                           1/1     Running            0                155m
+kube-scheduler-k8s-control                 1/1     Running            22 (11m ago)     156m
+cloud_user@k8s-control:/etc/kubernetes/manifests$ k delete pod -n kube-system etcd-k8s-control
+Error from server (NotFound): pods "etcd-k8s-control" not found
+cloud_user@k8s-control:/etc/kubernetes/manifests$ k delete pod -n kube-system etcd-k8s-control
+pod "etcd-k8s-control" deleted
+cloud_user@k8s-control:/etc/kubernetes/manifests$ k get pod -n kube-system
+NAME                                       READY   STATUS             RESTARTS        AGE
+calico-kube-controllers-56cdb7c587-6qj4d   0/1     CrashLoopBackOff   24 (51s ago)    156mcalico-node-gdwnp                          1/1     Running            0               156mcalico-node-q854l                          1/1     Running            0               156mcoredns-6d4b75cb6d-vc8mp                   1/1     Running            0               156mcoredns-6d4b75cb6d-vx5qc                   1/1     Running            0               156metcd-k8s-control                           1/1     Running            0               8skube-apiserver-k8s-control                 1/1     Running            0               5m42skube-controller-manager-k8s-control        1/1     Running            24 (111s ago)   156mkube-proxy-5g8dp                           1/1     Running            0               156m
+kube-proxy-srdk5                           1/1     Running            0               156m
+kube-scheduler-k8s-control                 1/1     Running            23 (111s ago)   156m
+cloud_user@k8s-control:/etc/kubernetes/manifests$
