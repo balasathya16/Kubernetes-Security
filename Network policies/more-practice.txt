@@ -1,0 +1,14 @@
+cloud_user@k8s-cli:~$ vi default-deny.yml
+cloud_user@k8s-cli:~$ k create  -f default-deny.yml
+networkpolicy.networking.k8s.io/default-deny created
+cloud_user@k8s-cli:~$ cat default-deny.yml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: mordor
+spec:
+  podSelector: {}
+  policyTypes:
+  - Egress
+cloud_user@k8s-cli:~$
