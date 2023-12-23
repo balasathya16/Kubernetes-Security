@@ -161,3 +161,17 @@ apparmor module is loaded.
 0 processes are in complain mode.
 0 processes are unconfined but have a profile defined.
 root@cks-worker:~# 
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: chewbacca
+  namespace: kashyyyk
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/busybox: k8s-deny-write
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1.33.1
+    command: ['sh', '-c', 'while true; do echo hunter2 > password.txt; sleep 5; done']
