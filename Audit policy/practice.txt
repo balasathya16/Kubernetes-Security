@@ -37,3 +37,27 @@ cloud_user@k8s-control:~$ cd /etc/kubernetes/
 cloud_user@k8s-control:/etc/kubernetes$ ls
 admin.conf  audit-policy.yaml  controller-manager.conf  kubelet.conf  manifests  pki  scheduler.conf
 cloud_user@k8s-control:/etc/kubernetes$
+
+apiVersion: audit.k8s.io/v1
+kind: Policy
+omitStages:
+  - "RequestReceived"
+rules:
+  - level: None
+    resources:
+    - group: ""
+      resources: ["pods/log", "pods/status"]
+  - level: RequestResponse
+    resources:
+    - group: ""
+      resources: ["configmaps"]
+  - level: Request
+    resources:
+    - group: ""
+      resources: ["services", "pods"]
+    namespaces: ["web"]
+  - level: Metadata
+    resources:
+    - group: ""
+      resources: ["secrets"]
+  - level: Metadata
