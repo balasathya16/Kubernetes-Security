@@ -4,3 +4,8 @@ cloud_user@k8s-worker1:~$ k get pod
 NAME      READY   STATUS    RESTARTS   AGE
 monitor   1/1     Running   1          21m
 cloud_user@k8s-worker1:~$
+
+➜ root@cluster1-node1:~# service falco status
+● falco.service - LSB: Falco syscall activity monitoring agent
+   Loaded: loaded (/etc/init.d/falco; generated)
+   Active: active (running)
