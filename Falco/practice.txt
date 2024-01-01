@@ -56,3 +56,22 @@ Mon Jan  1 21:23:49 2024: Starting internal webserver, listening on port 8765
 21:24:11.192177831: Warning (21:24:11.192177831,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
 21:24:11.192274912: Warning (21:24:11.192274912,cat,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
 21:24:11.192563243: Warning (21:24:11.192563243,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+
+
+cloud_user@k8s-worker1:~$ vi monitor_rules.yaml
+cloud_user@k8s-worker1:~$ falco -r monitor_rules.yaml -M 45
+Mon Jan  1 21:35:45 2024: Falco version 0.28.1 (driver version 5c0b863ddade7a45568c0ac97d037422c9efb750)
+Mon Jan  1 21:35:45 2024: Falco initialized with configuration file /etc/falco/falco.yaml
+Mon Jan  1 21:35:45 2024: Loading rules from file monitor_rules.yaml:
+Mon Jan  1 21:35:45 2024: Unable to load the driver.
+Mon Jan  1 21:35:45 2024: Runtime error: error opening device /dev/falco0. Make sure you have root credentials and that the falco module is loaded.. Exiting.
+cloud_user@k8s-worker1:~$ sudo !!
+sudo falco -r monitor_rules.yaml -M 45
+Mon Jan  1 21:35:50 2024: Falco version 0.28.1 (driver version 5c0b863ddade7a45568c0ac97d037422c9efb750)
+Mon Jan  1 21:35:50 2024: Falco initialized with configuration file /etc/falco/falco.yaml
+Mon Jan  1 21:35:50 2024: Loading rules from file monitor_rules.yaml:
+Mon Jan  1 21:35:50 2024: Starting internal webserver, listening on port 8765
+21:35:56.278491647: Notice (21:35:56.278491647,ffa7bcf4c536,docker.io/library/busybox:1.33.1,0,sh)
+21:35:56.278590360: Notice (21:35:56.278590360,ffa7bcf4c536,docker.io/library/busybox:1.33.1,0,cat)
+21:35:56.278851894: Notice (21:35:56.278851894,ffa7bcf4c536,docker.io/library/busybox:1.33.1,0,sh)
+21:35:56.278925029: Notice (21:35:56.278925029,ffa7bcf4c536,docker.io/library/busybox:1.33.1,0,sleep)
