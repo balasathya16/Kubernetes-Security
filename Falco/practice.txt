@@ -33,3 +33,26 @@ cloud_user@k8s-worker1:~$
     (%evt.time,%proc.name,%user.uid,%container.id,%container.name,%container.image)
   priority: WARNING
 ~
+on Jan  1 21:23:49 2024: Falco version 0.28.1 (driver version 5c0b863ddade7a45568c0ac97d037422c9efb750)
+Mon Jan  1 21:23:49 2024: Falco initialized with configuration file /etc/falco/falco.yaml
+Mon Jan  1 21:23:49 2024: Loading rules from file nfinx.yaml:
+Mon Jan  1 21:23:49 2024: Starting internal webserver, listening on port 8765
+21:23:51.188374064: Warning (21:23:51.188374064,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:23:51.188473320: Warning (21:23:51.188473320,cat,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:23:51.188774733: Warning (21:23:51.188774733,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:23:51.188852312: Warning (21:23:51.188852312,sleep,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:23:56.189299213: Warning (21:23:56.189299213,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:23:56.189390979: Warning (21:23:56.189390979,cat,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:23:56.189692673: Warning (21:23:56.189692673,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:23:56.189766344: Warning (21:23:56.189766344,sleep,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:01.190249885: Warning (21:24:01.190249885,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:01.190348101: Warning (21:24:01.190348101,cat,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:01.190658558: Warning (21:24:01.190658558,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:01.190740465: Warning (21:24:01.190740465,sleep,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:06.191225318: Warning (21:24:06.191225318,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:06.191316019: Warning (21:24:06.191316019,cat,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:06.191660453: Warning (21:24:06.191660453,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:06.191764245: Warning (21:24:06.191764245,sleep,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:11.192177831: Warning (21:24:11.192177831,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:11.192274912: Warning (21:24:11.192274912,cat,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
+21:24:11.192563243: Warning (21:24:11.192563243,sh,0,50d2c8f86844,nginx,docker.io/library/busybox:1.33.1)
