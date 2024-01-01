@@ -23,3 +23,13 @@ cloud_user@k8s-worker1:~$
     (user=%user.name container_id=%container.id container_name=%container.name 
     shell=%proc.name parent=%proc.pname cmdline=%proc.cmdline)    
   priority: WARNING
+
+
+  - rule: shell_in_container
+  desc: notice shell activity within a container
+  condition: >
+    (container.name = "nginx" and evt.type = execve)
+  output: >
+    (%evt.time,%proc.name,%user.uid,%container.id,%container.name,%container.image)
+  priority: WARNING
+~
