@@ -160,3 +160,23 @@ kubectl-createUpdate�vɴ��FieldsV1:1
 password1234�Opaque�"
 root@cks-master:~# 
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-pod
+spec:
+  volumes:
+    - name: secret-volume
+      secret:
+        secretName: dotfile-secret
+  containers:
+    - name: dotfile-test-container
+      image: registry.k8s.io/busybox
+      command:
+        - ls
+        - "-l"
+        - "/etc/secrets"
+      volumeMounts:
+        - name: secret-volume
+          readOnly: true
+          mountPath: "/etc/secrets"
